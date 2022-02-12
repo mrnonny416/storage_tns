@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.conf.urls import url
 
 
+def helloworld(request):
+    return HttpResponse("Hello Test ")
+
 urlpatterns = [
-    url('admin/', admin.site.urls),
+    url(r'admin/', admin.site.urls),
+    url(r'^$', helloworld),
 ]
+
