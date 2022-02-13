@@ -9,4 +9,7 @@ def admin(request):
 
 def login(request):
     return render(request, 'login.html')
+
+def select(request):
+    return render(request, 'select.html')
 # Create your views here.
