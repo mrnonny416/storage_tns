@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+</head>
+    <body>
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown">
+              MENU
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">เพิ่มรายการ</a>
+              <a class="dropdown-item" href="#">ลบรายการ</a>
+              <a class="dropdown-item" href="#">แก้ไขรายการ</a>
+            </div>
+        </div>
+
+        <center><h1>เพิ่มรายการ</h1></center>
+
+        <div class="form-inline">
+              <label class="mb-2 mr-sm-2">Name:</label>
+              <input type="text" class="form-control mb-2 mr-sm-2">
+        </div>
+
+        <div class="form-inline">
+            <label class="mb-2 mr-sm-2">Type:</label>
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle mb-2" data-toggle="dropdown">
+              Select
+                </button>
+                <div class="dropdown-menu form-inline">
+                    <a class="dropdown-item" href="#">วัสดุ</a>
+                    <a class="dropdown-item" href="#">อุปกรณ์</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-inline">
+            <label class="mb-2 mr-sm-2">Amout:</label>
+            <input type="text" class="form-control mb-2 mr-sm-2">
+        </div>
+
+        <div class="form-inline">
+            <label class="mb-2 mr-sm-2">Picture:</label>
+            <button type="submit" class="btn btn-primary mb-2">insert</button>
+      </div>
+
+      <div>
+        <button type="button" class="btn btn-success">OK</button>
+        <button type="button" class="btn btn-danger">Cancel</button>
+      </div>
+
+    </body>
+{% endblock content %}

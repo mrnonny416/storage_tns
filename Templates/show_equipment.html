@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+</head>
+    <body>
+        
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown">
+              MENU
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">เพิ่มรายการ</a>
+              <a class="dropdown-item" href="#">ลบรายการ</a>
+              <a class="dropdown-item" href="#">แก้ไขรายการ</a>
+            </div>
+          </div>
+        </div>
+
+        <center><h1>อุปกรณ์</h1></center>
+
+        <input type="text">
+
+
+        <div class="container-fluid">          
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th><img src="{% static 'images/Equiment.jpg' %}"  width="200" height="200" ></th>
+                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block" width="200" height="200"></th>
+                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto" width="200" height="200"></th>
+                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto" width="200" height="200"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Equiment 1</td>
+                  <td>Equiment 2</td>
+                  <td>Equiment 3</td>
+                  <td>Equiment 4</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                            <input type="text">
+                            <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                          </div>
+                    </td>
+                    <td>
+                        <div>
+                          <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                          <input type="text">
+                          <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                          </div>
+                    </td>
+                    <td>
+                        <div>
+                          <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                          <input type="text">
+                          <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                          </div>
+                    </td>
+                    <td>
+                      <div>
+                        <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                        <input type="text">
+                        <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                        </div>
+                    </td>
+                  </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto img-fluid" width="200" height="200"></th>
+                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto img-fluid" width="200" height="200"></th>
+                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto img-fluid" width="200" height="200"></th>
+                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto img-fluid" width="200" height="200"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Equiment 1</td>
+                  <td>Equiment 2</td>
+                  <td>Equiment 3</td>
+                  <td>Equiment 4</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                            <input type="text">
+                            <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                          </div>
+                    </td>
+                    <td>
+                        <div>
+                          <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                          <input type="text">
+                          <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                          </div>
+                    </td>
+                    <td>
+                        <div>
+                          <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                          <input type="text">
+                          <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                          </div>
+                    </td>
+                    <td>
+                      <div>
+                        <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                        <input type="text">
+                        <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                        </div>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+            
+            <center><button type="button" class="btn btn-dark">HOME</button></center>
+            
+        </div>
+
+    </body>
+{% endblock content %}

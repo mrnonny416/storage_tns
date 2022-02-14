@@ -14,6 +14,18 @@ def show_material(request):
     return render(request, 'show_material.html')
 
 
-def show_equiment(request):
-    return render(request, 'show_equiment.html')
+def show_equipment(request):
+    return render(request, 'show_equipment.html')
+
+def addlist(request):
+    return render(request, 'addlist.html')
+
+def delete(request):
+    return render(request, 'delete.html')
+
+def edit(request):
+    return render(request, 'edit.html')
+
+def edit_detail(request):
+    return render(request, 'edit_detail.html')
 # Create your views here.

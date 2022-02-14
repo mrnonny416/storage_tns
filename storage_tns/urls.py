@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-from storage_tns_app.views import index,login,select,show_material,show_equiment
+from storage_tns_app.views import index,login,select,show_material,show_equipment,addlist,delete,edit,edit_detail
 from django.contrib import admin
 
 
@@ -25,5 +25,9 @@ urlpatterns = [
     url(r'^login$',login,name='login'),
     url(r'^select$',select,name='select'),
     url(r'^show_material$',show_material,name='show_material'),
-    url(r'^show_equiment$',show_equiment,name='show_equiment'),
+    url(r'^show_equipment$',show_equipment,name='show_equipment'),
+    url(r'^addlist$',addlist,name='addlist'),
+    url(r'^delete$',delete,name='delete'),
+    url(r'^edit$',edit,name='edit'),
+    url(r'^edit_detail$',edit_detail,name='edit_detail'),
 ]
