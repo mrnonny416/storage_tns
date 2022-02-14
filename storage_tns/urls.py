@@ -15,13 +15,8 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-<<<<<<< Updated upstream
-from storage_tns_app.views import index,login,select
+from storage_tns_app.views import index,login,select,show_material,show_equiment
 from django.contrib import admin
-=======
-from storage_tns_app.views import index,admin,login,select,show_material
-
->>>>>>> Stashed changes
 
 
 urlpatterns = [
@@ -29,8 +24,6 @@ urlpatterns = [
     url(r'^$',index,name='index'),
     url(r'^login$',login,name='login'),
     url(r'^select$',select,name='select'),
-<<<<<<< Updated upstream
-=======
-    url(r'^$',show_material,name='show_material'),
->>>>>>> Stashed changes
+    url(r'^show_material$',show_material,name='show_material'),
+    url(r'^show_equiment$',show_equiment,name='show_equiment'),
 ]
