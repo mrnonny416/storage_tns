@@ -28,4 +28,7 @@ def edit(request):
 
 def edit_detail(request):
     return render(request, 'edit_detail.html')
+
+def test(request):
+    return render(request, 'test.html')
 # Create your views here.
