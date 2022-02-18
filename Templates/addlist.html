@@ -2,18 +2,22 @@
 {% block content %}
 </head>
     <body>
-        <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown">
+
+      <div class="row mr-2">
+        <div class="col-sm-2 dropdown text-center p-4">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
               MENU
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">เพิ่มรายการ</a>
-              <a class="dropdown-item" href="#">ลบรายการ</a>
-              <a class="dropdown-item" href="#">แก้ไขรายการ</a>
+              <a class="dropdown-item" href="{% url 'addlist'%}">add list</a>
+              <a class="dropdown-item" href="{% url 'delete'%}">delete</a>
+              <a class="dropdown-item" href="{% url 'edit'%}">edit</a>
             </div>
         </div>
+        <div class="col-sm-11"></div>
+      </div>
 
-        <center><h1>เพิ่มรายการ</h1></center>
+        <center><h1>Add list</h1></center>
 
         <div class="form-inline">
               <label class="mb-2 mr-sm-2">Name:</label>
