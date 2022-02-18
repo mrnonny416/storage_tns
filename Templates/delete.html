@@ -4,41 +4,48 @@
 </head>
     <body>
         
-        <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown">
+      <div class="row mr-2">
+        <div class="col-sm-2 dropdown text-center p-4">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
               MENU
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">เพิ่มรายการ</a>
-              <a class="dropdown-item" href="#">ลบรายการ</a>
-              <a class="dropdown-item" href="#">แก้ไขรายการ</a>
+              <a class="dropdown-item" href="{% url 'addlist'%}">เพิ่มรายการ</a>
+              <a class="dropdown-item" href="{% url 'delete'%}">ลบรายการ</a>
+              <a class="dropdown-item" href="{% url 'edit'%}">แก้ไขรายการ</a>
             </div>
+        </div>
+        <div class="col-sm-11"></div>
+      </div>
+
+        <center><h1>Delete</h1></center>
+
+        <div class="row p-3 mr-2">
+          <div class="col-sm-9"></div>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" placeholder="search">
           </div>
         </div>
 
-        <center><h1>ลบรายการ</h1></center>
 
-        <input type="text">
-
-
-        <div class="container-fluid">          
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block" width="200" height="200"></th>
-                  <th><img src="{% static 'images/Meterail.jpg' %}" class="mx-auto d-block" width="200" height="200"></th>
-                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block" width="200" height="200"></th>
-                  <th><img src="{% static 'images/Meterail.jpg' %}" class="mx-auto d-block" width="200" height="200"></th>
-                </tr>
-              </thead>
+        <div class="container">          
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th><img src="{% static 'images/Equipment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                <th><img src="{% static 'images/Meterail.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                <th><img src="{% static 'images/Equipment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                <th><img src="{% static 'images/Meterail.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+              </tr>
+            </thead>
               <tbody>
-                <tr>
-                  <td>Equiment 1</td>
-                  <td>Material 2</td>
-                  <td>Equiment 3</td>
-                  <td>Material 4</td>
+                <tr class="table-sm">
+                  <td class="text-center">Equiment 1</td>
+                  <td class="text-center">Material 2</td>
+                  <td class="text-center">Equiment 3</td>
+                  <td class="text-center">Material 4</td>
                 </tr>
-                <tr>
+                <tr class="text-center">
                     <td>
                         <div>
                             <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
@@ -61,11 +68,54 @@
                     </td>
                   </tr>
               </tbody>
-            </table>
-            
-            <center><button type="button" class="btn btn-dark">HOME</button></center>
-            
+
+              <thead>
+                <tr>
+                  <th><img src="{% static 'images/Equipment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                  <th><img src="{% static 'images/Meterail.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                  <th><img src="{% static 'images/Equipment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                  <th><img src="{% static 'images/Meterail.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                </tr>
+              </thead>
+                <tbody>
+                  <tr class="table-sm">
+                    <td class="text-center">Equiment 1</td>
+                    <td class="text-center">Material 2</td>
+                    <td class="text-center">Equiment 3</td>
+                    <td class="text-center">Material 4</td>
+                  </tr>
+                  <tr class="text-center">
+                      <td>
+                          <div>
+                              <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                          </div>
+                      </td>
+                      <td>
+                          <div>
+                              <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                          </div>
+                      </td>
+                      <td>
+                          <div>
+                              <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                          </div>
+                      </td>
+                      <td>
+                          <div>
+                              <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                          </div>
+                      </td>
+                    </tr>
+                </tbody>
+            </table>            
         </div>
+
+        <div>
+          <a href="{% url 'select'%}">
+          <center><button type="button" class="btn btn-dark"><i class="fas fa-home"></i></button></center>
+          </a>
+        </div>
+        <br>
 
     </body>
 {% endblock content %}

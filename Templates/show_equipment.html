@@ -4,125 +4,182 @@
 </head>
     <body>
         
-        <div class="dropdown pt-5 ml-5">
-            <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown">
+      <div class="row mr-2">
+        <div class="col-sm-2 dropdown text-center p-4">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
               MENU
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">เพิ่มรายการ</a>
-              <a class="dropdown-item" href="#">ลบรายการ</a>
-              <a class="dropdown-item" href="#">แก้ไขรายการ</a>
+              <a class="dropdown-item" href="{% url 'addlist'%}">เพิ่มรายการ</a>
+              <a class="dropdown-item" href="{% url 'delete'%}">ลบรายการ</a>
+              <a class="dropdown-item" href="{% url 'edit'%}">แก้ไขรายการ</a>
             </div>
-          </div>
         </div>
+        <div class="col-sm-11"></div>
+      </div>
 
-        <center><h1>อุปกรณ์</h1></center>
+        <center><h1>Equiment</h1></center>
 
-          <div class="p-3 pr-0">
+        <div class="row p-3 mr-2">
+          <div class="col-sm-9"></div>
+          <div class="col-sm-2">
             <input type="text" class="form-control" placeholder="search">
           </div>
-
-
-
-        <div class="container-fluid">          
-            <table class="table table-borderless">
-              <thead>
-                <tr>
-                  <th><img src="{% static 'images/Equiment.jpg' %}"  width="200" height="200" ></th>
-                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block" width="200" height="200"></th>
-                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto" width="200" height="200"></th>
-                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto" width="200" height="200"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Equiment 1</td>
-                  <td>Equiment 2</td>
-                  <td>Equiment 3</td>
-                  <td>Equiment 4</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
-                            <input type="text">
-                            <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
-                          </div>
-                    </td>
-                    <td>
-                        <div>
-                          <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
-                          <input type="text">
-                          <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
-                          </div>
-                    </td>
-                    <td>
-                        <div>
-                          <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
-                          <input type="text">
-                          <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
-                          </div>
-                    </td>
-                    <td>
-                      <div>
-                        <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
-                        <input type="text">
-                        <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
-                        </div>
-                    </td>
-                  </tr>
-              </tbody>
-              <thead>
-                <tr>
-                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto img-fluid" width="200" height="200"></th>
-                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto img-fluid" width="200" height="200"></th>
-                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto img-fluid" width="200" height="200"></th>
-                  <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto img-fluid" width="200" height="200"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Equiment 1</td>
-                  <td>Equiment 2</td>
-                  <td>Equiment 3</td>
-                  <td>Equiment 4</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
-                            <input type="text">
-                            <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
-                          </div>
-                    </td>
-                    <td>
-                        <div>
-                          <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
-                          <input type="text">
-                          <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
-                          </div>
-                    </td>
-                    <td>
-                        <div>
-                          <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
-                          <input type="text">
-                          <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
-                          </div>
-                    </td>
-                    <td>
-                      <div>
-                        <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
-                        <input type="text">
-                        <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
-                        </div>
-                    </td>
-                  </tr>
-              </tbody>
-            </table>
-            
-            <center><button type="button" class="btn btn-dark">HOME</button></center>
-            
         </div>
+
+        <div class="container">          
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-sm">
+                <td class="text-center">Equiment 1</td>
+                <td class="text-center">Equiment 2</td>
+                <td class="text-center">Equiment 3</td>
+                <td class="text-center">Equiment 4</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="row no-gutters">
+                    <div class="col-sm-5 text-right pt-1 pr-1 ml-3">
+                      <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                    </div>
+                    <div class="col-sm-1 pt-1">    
+                        <input type="text" class="form-control form-control-sm text-center">
+                    </div>
+                    <div class="col-sm-5 text-left pt-1 pl-1">
+                      <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="row no-gutters">
+                    <div class="col-sm-5 text-right pt-1 pr-1 ml-3">
+                      <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                    </div>
+                    <div class="col-sm-1 pt-1">    
+                        <input type="text" class="form-control form-control-sm text-center">
+                    </div>
+                    <div class="col-sm-5 text-left pt-1 pl-1">
+                      <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="row no-gutters">
+                    <div class="col-sm-5 text-right pt-1 pr-1 ml-3">
+                      <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                    </div>
+                    <div class="col-sm-1 pt-1">    
+                        <input type="text" class="form-control form-control-sm text-center">
+                    </div>
+                    <div class="col-sm-5 text-left pt-1 pl-1">
+                      <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="row no-gutters">
+                    <div class="col-sm-5 text-right pt-1 pr-1 ml-3">
+                      <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                    </div>
+                    <div class="col-sm-1 pt-1">    
+                        <input type="text" class="form-control form-control-sm text-center">
+                    </div>
+                    <div class="col-sm-5 text-left pt-1 pl-1">
+                      <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                    </div>
+                  </div>
+                </td>
+            </tr>
+          </tbody>
+
+          <thead>
+              <tr>
+                <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+                <th><img src="{% static 'images/Equiment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-sm">
+                <td class="text-center">Equiment 1</td>
+                <td class="text-center">Equiment 2</td>
+                <td class="text-center">Equiment 3</td>
+                <td class="text-center">Equiment 4</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="row no-gutters">
+                    <div class="col-sm-5 text-right pt-1 pr-1 ml-3">
+                      <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                    </div>
+                    <div class="col-sm-1 pt-1">    
+                        <input type="text" class="form-control form-control-sm text-center">
+                    </div>
+                    <div class="col-sm-5 text-left pt-1 pl-1">
+                      <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="row no-gutters">
+                    <div class="col-sm-5 text-right pt-1 pr-1 ml-3">
+                      <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                    </div>
+                    <div class="col-sm-1 pt-1">    
+                        <input type="text" class="form-control form-control-sm text-center">
+                    </div>
+                    <div class="col-sm-5 text-left pt-1 pl-1">
+                      <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="row no-gutters">
+                    <div class="col-sm-5 text-right pt-1 pr-1 ml-3">
+                      <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                    </div>
+                    <div class="col-sm-1 pt-1">    
+                        <input type="text" class="form-control form-control-sm text-center">
+                    </div>
+                    <div class="col-sm-5 text-left pt-1 pl-1">
+                      <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="row no-gutters">
+                    <div class="col-sm-5 text-right pt-1 pr-1 ml-3">
+                      <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
+                    </div>
+                    <div class="col-sm-1 pt-1">    
+                        <input type="text" class="form-control form-control-sm text-center">
+                    </div>
+                    <div class="col-sm-5 text-left pt-1 pl-1">
+                      <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
+                    </div>
+                  </div>
+                </td>
+            </tr>
+          </tbody>
+        </table> 
+      </div>
+
+      <div>
+        <a href="{% url 'select'%}">
+        <center><button type="button" class="btn btn-dark"><i class="fas fa-home"></i></button></center>
+        </a>
+      </div>
+      <br>
+     
 
     </body>
 {% endblock content %}
