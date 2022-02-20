@@ -49,12 +49,12 @@
               </tr>
               <tr>
                 <td>
-                  <div class="row no-gutters border">
-                    <div class="number-input md-number-input border">
+                  <div class="number-input md-number-input row justify-content-md-center no-gutters">
                         <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus btn btn-outline-danger btn-sm">ยืม</button>
-                        <input class="form-control quantity" min="0" name="quantity" value="1" type="number">
+                        <div class="col-sm-4 pl-1 pr-1">
+                          <input class="form-control quantity" min="0" name="quantity" value="1" type="number">
+                        </div>
                         <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus btn btn-outline-success btn-sm">คืน</button>
-                      </div>
                   </div>
                 </td>
                 <td>
