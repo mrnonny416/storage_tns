@@ -23,7 +23,10 @@
         <div class="row p-3 mr-2">
           <div class="col-sm-9"></div>
           <div class="col-sm-2">
-            <input type="text" class="form-control" placeholder="search">
+            <form class="form-inline">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+              </form>
           </div>
         </div>
 
@@ -46,16 +49,12 @@
               </tr>
               <tr>
                 <td>
-                  <div class="row no-gutters">
-                    <div class="col-sm-5 text-right pt-1 pr-1 ml-3">
-                      <button type="button" class="btn btn-outline-success btn-sm">ยืม</button>
-                    </div>
-                    <div class="col-sm-1 pt-1">    
-                        <input type="text" class="form-control form-control-sm text-center">
-                    </div>
-                    <div class="col-sm-5 text-left pt-1 pl-1">
-                      <button type="button" class="btn btn-outline-danger btn-sm">คืน</button>
-                    </div>
+                  <div class="row no-gutters border">
+                    <div class="number-input md-number-input border">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus btn btn-outline-danger btn-sm">ยืม</button>
+                        <input class="form-control quantity" min="0" name="quantity" value="1" type="number">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus btn btn-outline-success btn-sm">คืน</button>
+                      </div>
                   </div>
                 </td>
                 <td>

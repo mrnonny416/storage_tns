@@ -1,52 +1,91 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 </head>
     <body>
-        <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown">
-              MENU
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">เพิ่มรายการ</a>
-              <a class="dropdown-item" href="#">ลบรายการ</a>
-              <a class="dropdown-item" href="#">แก้ไขรายการ</a>
-            </div>
-        </div>
 
-        <center><h1>แก้ไขรายการ</h1></center>
-
-        <div class="form-inline">
-              <label class="mb-2 mr-sm-2">Name:</label>
-              <input type="text" class="form-control mb-2 mr-sm-2">
-        </div>
-
-        <div class="form-inline">
-            <label class="mb-2 mr-sm-2">Type:</label>
-            <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle mb-2" data-toggle="dropdown">
-              Select
+        <div class="row mr-2">
+            <div class="col-sm-2 dropdown text-center p-4">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                  MENU
                 </button>
-                <div class="dropdown-menu form-inline">
-                    <a class="dropdown-item" href="#">วัสดุ</a>
-                    <a class="dropdown-item" href="#">อุปกรณ์</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'addlist'%}">add list</a>
+                  <a class="dropdown-item" href="{% url 'delete'%}">delete</a>
+                  <a class="dropdown-item" href="{% url 'edit'%}">edit</a>
                 </div>
             </div>
+            <div class="col-sm-11"></div>
+          </div>
+    
+          <div class="container-fluid"><align="center"></center>
+            <h1 style="text-align:center;">AEdit detail</h1>
+        <br>
+
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="form-inline">
+                <label class="mb-2 mr-sm-2">Name:</label>
+                <input type="text" class="form-control mb-2 mr-sm-2 ml-2">
+            </div>
         </div>
 
-        <div class="form-inline">
-            <label class="mb-2 mr-sm-2">Amout:</label>
-            <input type="text" class="form-control mb-2 mr-sm-2">
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="form-inline">
+                <label class="mb-2 mr-sm-2">Type:</label>
+            </div>
+            <div class="dropdown ml-3">
+                <form>
+                    <select name="cars" class="custom-select mb-3">
+                      <option>equipment</option>
+                      <option>material</option>
+                    </select>
+                  </form>
+            </div>
         </div>
 
-        <div class="form-inline">
-            <label class="mb-2 mr-sm-2">Picture:</label>
-            <button type="submit" class="btn btn-primary mb-2">insert</button>
-      </div>
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="form-inline">
+                <label class="mb-2 mr-sm-2">Amout:</label>
+                <input type="text" class="form-control mb-2 mr-sm-2">
+            </div>
+        </div>
 
-      <div>
-        <button type="button" class="btn btn-success">OK</button>
-        <button type="button" class="btn btn-danger">Cancel</button>
-      </div>
+        <div class="row form-inline">
+            <div class="col-sm-5 p-3"></div>
+            <label class="mb-3 mr-sm-2">Picture:</label>
+            <form action="/action_page.php">
+                <div class="custom-file mb-3">
+                    <input type="file" class="custom-file-input" id="customFile" name="filename">
+                    <label class="custom-file-label" for="customFile">Choose Picture</label>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            // Add the following code if you want the name of the file appear on select
+            $(".custom-file-input").on("change", function() {
+              var fileName = $(this).val().split("\\").pop();
+              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+        </script>
+        
+        <div class="row container ml-5">
+            <div class="col-sm-6 "></div>
+            <div class="form-inline">
+                <button type="button" class="btn btn-success mr-2">OK</button>
+                <button type="button" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br>  
+        <footer>
+          <a href="{% url 'select'%}">
+          <center><button type="button" class="btn btn-dark"><i class="fas fa-home"></i></button></center>
+          </a>
+        </footer>
+        <br>
 
     </body>
-{% endblock content %}
+    {% endblock content %}
