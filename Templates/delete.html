@@ -4,19 +4,26 @@
 </head>
     <body>
         
-      <div class="row mr-2">
-        <div class="col-sm-2 dropdown text-center p-4">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      <nav class="navbar navbar-expand-sm navbar-light justify-content-between sticky-top" style="background-color: #e3f2fd;">
+        <ul class="navbar-nav">
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
               MENU
-            </button>
+            </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="{% url 'addlist'%}">add list</a>
               <a class="dropdown-item" href="{% url 'delete'%}">delete</a>
               <a class="dropdown-item" href="{% url 'edit'%}">edit</a>
             </div>
-        </div>
-        <div class="col-sm-11"></div>
-      </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <label class="mr-sm-2">NK</label>
+          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+      </nav>
+      <br>
 
         <center><h1>Delete</h1></center>
 
