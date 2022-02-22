@@ -1,8 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from .models import user 
 
 def login(request):
-    if request.method == 'POST':
-        print(request.POST.GET)
+    isLogin = ''
+    username = ''
+    password = ''
+    if request.method == 'POST':     
+        User = user.objects.all()
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        for eachUser in User:  
+            if username != '' and password !='' and username == eachUser.Username and password and eachUser.Password == password:
+                isLogin = 'True'
+                return redirect('select')
+            else:
+                isLogin = 'False'
+        if isLogin=='True':
+            print('OK')
+        elif isLogin=='False':
+            print('not OK')       
     return render(request, 'login.html')
 
 

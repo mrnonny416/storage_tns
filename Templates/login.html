@@ -8,13 +8,13 @@
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4 border p-3 rounded-lg bg-secondary">
                     <h2 style="text-align:center;">login</h2><br>
-                <form action="select" method="post">
+                <form action="login" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="input form-control" placeholder="Username" >
+                        <input type="text" class="input form-control" placeholder="Username" name="username" id="username"  value="">
                     </div>
 
                     <div class="input-group mb-3">
