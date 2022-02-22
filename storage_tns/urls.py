@@ -15,13 +15,12 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-from storage_tns_app.views import index,login,select,show_material,show_equipment,addlist,delete,edit,edit_detail,test
+from storage_tns_app.views import login,select,show_material,show_equipment,addlist,delete,edit,edit_detail,test
 from django.contrib import admin
 
 
 urlpatterns = [
-    url('admin', admin.site.urls, name='admin'),
-    url(r'^index$',index,name='index'),
+    url(r'^admin/', admin.site.urls),
     url(r'^$',login,name='login'),
     url(r'^select$',select,name='select'),
     url(r'^show_material$',show_material,name='show_material'),
