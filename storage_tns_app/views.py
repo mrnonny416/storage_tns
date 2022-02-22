@@ -33,6 +33,8 @@ def show_equipment(request):
     return render(request, 'show_equipment.html')
 
 def addlist(request):
+    if request.method == 'POST':
+        print(request.POST.get('name'))
     return render(request, 'addlist.html')
 
 def delete(request):

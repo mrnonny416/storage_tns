@@ -3,6 +3,8 @@
 {% load static %}
 </head>
     <body>
+      <form action="addlist" method="POST">
+        {% csrf_token %}
         <nav class="navbar navbar-expand-sm navbar-light justify-content-between sticky-top" style="background-color: #e3f2fd;">
             <ul class="navbar-nav">
               <!-- Dropdown -->
@@ -17,10 +19,10 @@
                 </div>
               </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <div class="form-inline my-2 my-lg-0">
               <label class="mr-sm-2">NK</label>
               <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
-            </form>
+            </div>
           </nav>
           <br>
     
@@ -32,7 +34,7 @@
             <div class="col-sm-5"></div>
             <div class="form-inline">
                 <label class="mb-2 mr-sm-2">Name:</label>
-                <input type="text" class="form-control mb-2 mr-sm-2 ml-2">
+                <input type="text" class="form-control mb-2 mr-sm-2 ml-2" id="name" name="name" value="">
             </div>
         </div>
 
@@ -42,12 +44,10 @@
                 <label class="mb-2 mr-sm-2">Type:</label>
             </div>
             <div class="dropdown ml-3">
-                <form>
                     <select name="cars" class="custom-select mb-3">
-                      <option>equipment</option>
-                      <option>material</option>
+                      <option value="equipment">equipment</option>
+                      <option value="material">material</option>
                     </select>
-                  </form>
             </div>
         </div>
 
@@ -55,19 +55,17 @@
             <div class="col-sm-5"></div>
             <div class="form-inline">
                 <label class="mb-2 mr-sm-2">Amout:</label>
-                <input type="text" class="form-control mb-2 mr-sm-2">
+                <input type="text" class="form-control mb-2 mr-sm-2" id="amout" name="amout">
             </div>
         </div>
-
+        <!--
         <div class="form-row align-items-center">
             <div class="col-sm-5 p-3"></div>
-            <label class="mb-3 mr-sm-2">Picture:</label>
-            <form action="/action_page.php">
+            <label class="mb-3 mr-sm-2">Picture:</label
                 <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" id="customFile" name="filename">
-                    <label class="custom-file-label" for="customFile">Choose Picture</label>
+                    <input type="file" class="custom-file-input" id="filename" name="filename">
+                    <label class="custom-file-label" for="filename">Choose Picture</label>
                 </div>
-            </form>
         </div>
 
         <script>
@@ -77,12 +75,12 @@
               $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
             });
         </script>
-        
+        -->
         <div class="row container ml-5">
             <div class="col-sm-6 "></div>
             <div class="form-inline">
-                <button type="button" class="btn btn-success mr-2">OK</button>
-                <button type="button" class="btn btn-danger">Cancel</button>
+                <button type="submit" class="btn btn-success mr-2" >OK</button>
+                <button type="Cancel" class="btn btn-danger">Cancel</button>
             </div>
         </div>
         <br><br><br><br><br><br><br><br>  
@@ -92,6 +90,6 @@
           </a>
         </footer>
         <br>
-
+      </form>
     </body>
     {% endblock content %}

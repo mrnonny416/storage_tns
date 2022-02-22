@@ -21,7 +21,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^',login,name='login'),
+    url(r'^$',login,name='login'),
     url(r'^select$',select,name='select'),
     url(r'^show_material$',show_material,name='show_material'),
     url(r'^show_equipment$',show_equipment,name='show_equipment'),
