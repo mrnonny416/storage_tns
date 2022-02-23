@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.db.models.fields import AutoField
 class user(models.Model):
     Username = models.CharField(primary_key=True,max_length=20)
     Password = models.CharField(max_length=20)
@@ -7,22 +8,25 @@ class user(models.Model):
         return self.Username
     
 class material(models.Model):
-    Material = models.CharField(primary_key=True,max_length=50)
+    order = models.AutoField(primary_key=True)
+    Material = models.CharField(max_length=50)
     Amount = models.IntegerField()
-    Picture = models.CharField(max_length=4000000)
+    Picture = models.ImageField(upload_to='pictures/Material', blank=True)
     def __str__(self):
         return self.Material
     
 class equipment(models.Model):
-    Equipment = models.CharField(primary_key=True,max_length=50)
+    order = models.AutoField(primary_key=True)
+    Equipment = models.CharField(max_length=50)
     Amount = models.IntegerField()
     Picture = models.CharField(max_length=4000000, blank=True)
     
     def __str__(self):
         return self.Equipment
+    
 
 class history(models.Model):
-    HistoryNumber =  models.AutoField(primary_key=True)
+    order = models.AutoField(primary_key=True)
     Equipment = models.CharField(max_length=50)
     Type = models.CharField(max_length=50)
     Action = models.CharField(max_length=50)

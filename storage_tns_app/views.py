@@ -29,11 +29,13 @@ def select(request):
     return render(request, 'select.html')
 
 def show_material(request):
-    return render(request, 'show_material.html')
+    material_item = material.objects.all()
+    return render(request, 'show_material.html',{'material':material_item})
 
 
 def show_equipment(request):
-    return render(request, 'show_equipment.html')
+    equipment_item = equipment.objects.all()
+    return render(request, 'show_equipment.html',{'equipment':equipment_item})
 
 def addlist(request):
     if request.method == 'POST':
@@ -41,11 +43,12 @@ def addlist(request):
         equipment_name = request.POST.get('name')
         type = request.POST.get('type')
         amount = request.POST.get('amount')
-        picture = ''
+        picture = request.FILES
         #บันทึกเข้าที่ DB.equipment
-        equipment(Equipment=equipment_name,Amount=amount,Picture = picture).save()
-        
-        material(Material=equipment_name,Amount=amount,Picture = picture).save()
+        if type == 'equipment':
+            equipment(Equipment=equipment_name,Amount=amount,Picture = picture).save()
+        elif type == 'material':
+            material(Material=equipment_name,Amount=amount,Picture = picture).save()
         #บันทึกเข้าที่ DB.history
         history(HistoryNumber = NULL,Equipment=equipment_name,Type=type,Action='ADD',Amount=amount).save()
 
