@@ -8,7 +8,7 @@ class user(models.Model):
         return self.Username
     
 class material(models.Model):
-    order = models.AutoField(primary_key=True)
+    order = models.AutoField(auto_created=True, primary_key=True, default=1, serialize=False, verbose_name='ID')
     Material = models.CharField(max_length=50)
     Amount = models.IntegerField()
     Picture = models.ImageField(upload_to='pictures/Material', blank=True)
@@ -16,17 +16,16 @@ class material(models.Model):
         return self.Material
     
 class equipment(models.Model):
-    order = models.AutoField(primary_key=True)
+    order = models.AutoField(auto_created=True, primary_key=True, default=1, serialize=False, verbose_name='ID')
     Equipment = models.CharField(max_length=50)
     Amount = models.IntegerField()
     Picture = models.CharField(max_length=4000000, blank=True)
-    
     def __str__(self):
         return self.Equipment
     
 
 class history(models.Model):
-    order = models.AutoField(primary_key=True)
+    order = models.AutoField(auto_created=True, primary_key=True, default=1, serialize=False, verbose_name='ID')
     Equipment = models.CharField(max_length=50)
     Type = models.CharField(max_length=50)
     Action = models.CharField(max_length=50)

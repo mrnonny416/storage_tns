@@ -50,7 +50,7 @@ def addlist(request):
         elif type == 'material':
             material(Material=equipment_name,Amount=amount,Picture = picture).save()
         #บันทึกเข้าที่ DB.history
-        history(HistoryNumber = NULL,Equipment=equipment_name,Type=type,Action='ADD',Amount=amount).save()
+        history(Equipment=equipment_name,Type=type,Action='ADD',Amount=amount).save()
 
     return render(request, 'addlist.html')
 

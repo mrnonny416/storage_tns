@@ -61,20 +61,21 @@
 
         <div class="form-row align-items-center">
             <div class="col-sm-5 p-3"></div>
-            <label class="mb-3 mr-sm-2">Picture:</label
-                <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" id="filename" name="filename">
-                    <label class="custom-file-label" for="filename">Choose Picture</label>
-                </div>
-        </div>
+            <label class="mb-3 mr-sm-2">Picture:</label>
+              <div class="col-sm-2 custom-file mb-3">
+                <input type="file" class="custom-file-input" id="customFile" name="filename">
+                <label class="custom-file-label" for="customFile">Choose Picture</label>
+            </div>
+        </form>
+    </div>
 
-        <script>
-            // Add the following code if you want the name of the file appear on select
-            $(".custom-file-input").on("change", function() {
-              var fileName = $(this).val().split("\\").pop();
-              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            });
-        </script>
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+          var fileName = $(this).val().split("\\").pop();
+          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
 
         <div class="row container ml-5">
             <div class="col-sm-6 "></div>
