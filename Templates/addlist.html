@@ -3,7 +3,7 @@
 {% load static %}
 </head>
     <body>
-      <form action="addlist" method="POST">
+      <form action="addlist" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <nav class="navbar navbar-expand-sm navbar-light justify-content-between sticky-top" style="background-color: #e3f2fd;">
             <ul class="navbar-nav">
@@ -63,7 +63,7 @@
             <div class="col-sm-5 p-3"></div>
             <label class="mb-3 mr-sm-2">Picture:</label>
               <div class="col-sm-2 custom-file mb-3">
-                <input type="file" class="custom-file-input" id="customFile" name="filename">
+                <input type="file" class="custom-file-input" id="customFile" name="customFile">
                 <label class="custom-file-label" for="customFile">Choose Picture</label>
             </div>
         </form>

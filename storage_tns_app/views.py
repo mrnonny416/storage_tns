@@ -1,8 +1,7 @@
-from argparse import Action
 from asyncio.windows_events import NULL
-from typing import Type
 from django.shortcuts import redirect, render
 from .models import user,history,equipment,material
+from django.core.files.storage import FileSystemStorage
 
 def login(request):
     isLogin = ''
@@ -43,7 +42,7 @@ def addlist(request):
         equipment_name = request.POST.get('name')
         type = request.POST.get('type')
         amount = request.POST.get('amount')
-        picture = request.FILES
+        picture = request.POST.get('customFile')
         #บันทึกเข้าที่ DB.equipment
         if type == 'equipment':
             equipment(Equipment=equipment_name,Amount=amount,Picture = picture).save()
