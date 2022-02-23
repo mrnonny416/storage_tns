@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime
 class user(models.Model):
     Username = models.CharField(primary_key=True,max_length=20)
     Password = models.CharField(max_length=20)
@@ -7,25 +7,27 @@ class user(models.Model):
         return self.Username
     
 class material(models.Model):
-    Mataterial = models.CharField(primary_key=True,max_length=50)
+    Material = models.CharField(primary_key=True,max_length=50)
     Amount = models.IntegerField()
     Picture = models.CharField(max_length=4000000)
     def __str__(self):
-        return self.Mataterial
+        return self.Material
     
 class equipment(models.Model):
     Equipment = models.CharField(primary_key=True,max_length=50)
     Amount = models.IntegerField()
-    Picture = models.CharField(max_length=4000000)
+    Picture = models.CharField(max_length=4000000, blank=True)
+    
     def __str__(self):
         return self.Equipment
 
 class history(models.Model):
-    HistortNumber =  models.AutoField(primary_key=True)
+    HistoryNumber =  models.AutoField(primary_key=True)
     Equipment = models.CharField(max_length=50)
+    Type = models.CharField(max_length=50)
     Action = models.CharField(max_length=50)
-    DateTime = models.DateTimeField()
+    DateTime = models.DateTimeField(default=datetime.now, blank=True)
     Amount = models.IntegerField()
     def __str__(self):
-        return self.HistortNumber
+        return self.Equipment
 # Create your models here.

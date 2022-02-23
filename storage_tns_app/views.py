@@ -1,5 +1,8 @@
+from argparse import Action
+from asyncio.windows_events import NULL
+from typing import Type
 from django.shortcuts import redirect, render
-from .models import user 
+from .models import user,history,equipment,material
 
 def login(request):
     isLogin = ''
@@ -34,7 +37,18 @@ def show_equipment(request):
 
 def addlist(request):
     if request.method == 'POST':
-        print(request.POST.get('name'))
+        #ตัวแปร สำหรับบันทึกค่า
+        equipment_name = request.POST.get('name')
+        type = request.POST.get('type')
+        amount = request.POST.get('amount')
+        picture = ''
+        #บันทึกเข้าที่ DB.equipment
+        equipment(Equipment=equipment_name,Amount=amount,Picture = picture).save()
+        
+        material(Material=equipment_name,Amount=amount,Picture = picture).save()
+        #บันทึกเข้าที่ DB.history
+        history(HistoryNumber = NULL,Equipment=equipment_name,Type=type,Action='ADD',Amount=amount).save()
+
     return render(request, 'addlist.html')
 
 def delete(request):
@@ -48,4 +62,12 @@ def edit_detail(request):
 
 def test(request):
     return render(request, 'test.html')
+
+
+##def createLog(Equipment,Action,Amount):
+ ##   if Equipment != '' and Action !='' and Amount != '':
+  ##      history = history(Equipment=Equipment,Action=Action,Amount=Amount).save()
+  ##      return 'OK'
+ ##   else:
+   ##     return 'Not ok'
 # Create your views here.
