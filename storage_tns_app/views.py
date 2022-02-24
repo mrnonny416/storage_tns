@@ -1,7 +1,7 @@
 from asyncio.windows_events import NULL
 from django.shortcuts import redirect, render
 from .models import user,history,equipment,material
-from django.core.files.storage import FileSystemStorage
+
 
 def login(request):
     isLogin = ''
@@ -42,25 +42,40 @@ def addlist(request):
         equipment_name = request.POST.get('name')
         type = request.POST.get('type')
         amount = request.POST.get('amount')
-        picture = request.POST.get('customFile')
+        picture = request.FILES['customFile']
         #บันทึกเข้าที่ DB.equipment
         if type == 'equipment':
             equipment(Equipment=equipment_name,Amount=amount,Picture = picture).save()
+            return redirect('show_equipment')
         elif type == 'material':
             material(Material=equipment_name,Amount=amount,Picture = picture).save()
+            return redirect('show_material')
         #บันทึกเข้าที่ DB.history
         history(Equipment=equipment_name,Type=type,Action='ADD',Amount=amount).save()
 
     return render(request, 'addlist.html')
 
-def delete(request):
-    return render(request, 'delete.html')
+def delete_material(request):
+    items = material.objects.all()
+    if request.method == 'GET':
+        if request.GET.get('id'):
+            material.objects.filter(order=request.GET.get('id')).delete()
+            return redirect('delete_material')
+    return render(request, 'delete_material.html',{'items':items})
 
-def edit(request):
-    return render(request, 'edit.html')
+def delete_equipment(request):
+    items = equipment.objects.all()
+    if request.method == 'GET':
+        if request.GET.get('id'):
+            equipment.objects.filter(order=request.GET.get('id')).delete()
+            return redirect('delete_equipment')
+    return render(request, 'delete_equipment.html',{'items':items})
 
-def edit_detail(request):
-    return render(request, 'edit_detail.html')
+def edit_equipment(request):
+    return render(request, 'edit_equipment.html')
+
+def edit_equipment_detail(request):
+    return render(request, 'edit_equipment_detail.html')
 
 def test(request):
     return render(request, 'test.html')

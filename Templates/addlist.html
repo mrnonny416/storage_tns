@@ -14,7 +14,7 @@
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'addlist'%}">add list</a>
-                  <a class="dropdown-item" href="{% url 'delete'%}">delete</a>
+                  <a class="dropdown-item" href="{% url 'delete_material'%}">delete</a>
                   <a class="dropdown-item" href="{% url 'edit'%}">edit</a>
                 </div>
               </li>
@@ -64,7 +64,7 @@
             <label class="mb-3 mr-sm-2">Picture:</label>
               <div class="col-sm-2 custom-file mb-3">
                 <input type="file" class="custom-file-input" id="customFile" name="customFile">
-                <label class="custom-file-label" for="customFile">Choose Picture</label>
+                <label class="custom-file-label" for="customFile">Choose Picture</label> (อัตราส่วนรูปภาพ 1:1)
             </div>
         </form>
     </div>
@@ -77,13 +77,12 @@
         });
     </script>
 
-        <div class="row container ml-5">
-            <div class="col-sm-6 "></div>
-            <div class="form-inline">
-                <button type="submit" class="btn btn-success mr-2" >OK</button>
-                <button type="Cancel" class="btn btn-danger">Cancel</button>
-            </div>
-        </div>
+    <div class="row d-flex justify-content-center pt-3">
+      <div class="form-inline">
+          <button type="submit" class="btn btn-success mr-2">OK</button>
+          <button type="Cancel" class="btn btn-danger">Cancel</button>
+      </div>
+  </div>
         <br><br><br><br><br><br><br><br>  
         <footer>
           <a href="{% url 'select'%}">

@@ -11,7 +11,7 @@ class material(models.Model):
     order = models.AutoField(auto_created=True, primary_key=True)
     Material = models.CharField(max_length=50)
     Amount = models.IntegerField()
-    Picture = models.ImageField(upload_to='pictures/Material', blank=True)
+    Picture = models.ImageField(upload_to='material', blank=True)
     def __str__(self):
         return self.Material
     
@@ -19,7 +19,7 @@ class equipment(models.Model):
     order = models.AutoField(auto_created=True, primary_key=True)
     Equipment = models.CharField(max_length=50)
     Amount = models.IntegerField()
-    Picture = models.CharField(max_length=4000000, blank=True)
+    Picture = models.ImageField(upload_to='equipment', blank=True)
     def __str__(self):
         return self.Equipment
     
