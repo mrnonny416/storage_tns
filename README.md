@@ -7,3 +7,5 @@ save file
 
 
 แก้ nav bar จาก select
+
+แก้ navbar หน้า addlist
