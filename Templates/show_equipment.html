@@ -3,28 +3,27 @@
 {% load static %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light d-flex sticky-top" style="background-color: #e3f2fd;">
-        <div class="mr-auto">
-        <ul class="navbar-nav">
-          <!-- Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              MENU
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="{% url 'addlist'%}">add list</a>
-              <a class="dropdown-item" href="{% url 'delete_equipment'%}">delete</a>
-              <a class="dropdown-item" href="{% url 'edit_equipment'%}">edit</a>
-            </div>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <label class="mr-sm-2">NK</label>
-          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
-        </form>
-      </nav>
-      <br>
-
+  <nav class="navbar navbar-expand-lg navbar-light d-flex sticky-top" style="background-color: #e3f2fd;">
+    <div class="mr-auto">
+    <ul class="navbar-nav">
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          MENU
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'addlist'%}">add list</a>
+          <a class="dropdown-item" href="{% url 'delete_equipment'%}">delete</a>
+          <a class="dropdown-item" href="{% url 'edit_equipment'%}">edit</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+      <div class="p2">{{ user }}
+      <a href="{% url 'login' %}"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+    </div>
+  </nav>
+  <br>
         <center><h1>Equiment</h1></center>
 
         <div class="row p-3 mr-2">

@@ -5,25 +5,26 @@
     <body>
       <form action="addlist" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <nav class="navbar navbar-expand-sm navbar-light justify-content-between sticky-top" style="background-color: #e3f2fd;">
-            <ul class="navbar-nav">
-              <!-- Dropdown -->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  MENU
-                </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'addlist'%}">add list</a>
-                  <a class="dropdown-item" href="{% url 'delete_material'%}">delete</a>
-                  <a class="dropdown-item" href="#">edit</a>
-                </div>
-              </li>
-            </ul>
-            <div class="form-inline my-2 my-lg-0">
-              <label class="mr-sm-2">NK</label>
-              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
-            </div>
-          </nav>
+        <nav class="navbar navbar-expand-lg navbar-light d-flex sticky-top" style="background-color: #e3f2fd;">
+          <div class="mr-auto">
+          <ul class="navbar-nav">
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                MENU
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'addlist'%}">add list</a>
+                <a class="dropdown-item" href="{% url 'delete_material'%}">delete</a>
+                <a class="dropdown-item" href="{% url 'edit_equipment'%}">edit</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+            <div class="p2">{{ user }}
+            <a href="{% url 'login' %}"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+          </div>
+        </nav>
           <br>
     
           <div class="container-fluid"><align="center"></center>
