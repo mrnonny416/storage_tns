@@ -72,10 +72,17 @@ def delete_equipment(request):
     return render(request, 'delete_equipment.html',{'items':items})
 
 def edit_equipment(request):
-    return render(request, 'edit_equipment.html')
+    equipment_item = equipment.objects.all()
+    return render(request, 'edit_equipment.html',{'equipment':equipment_item})
 
 def edit_equipment_detail(request):
     return render(request, 'edit_equipment_detail.html')
+
+def edit_material(request):
+    return render(request, 'edit_material.html')
+
+def edit_material_detail(request):
+    return render(request, 'edit_material_detail.html')
 
 def test(request):
     return render(request, 'test.html')
