@@ -4,3 +4,6 @@
 แก้ primarykey ของ history
 save file picture to static
 save file 
+
+
+แก้ nav bar จาก select

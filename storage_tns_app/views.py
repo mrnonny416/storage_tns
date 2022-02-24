@@ -4,7 +4,8 @@ from .models import user,history,equipment,material
 
 
 def login(request):
-    isLogin = '' 
+    isLogin = ''
+    request.session['user'] = None
     if request.method == 'POST':
         User = user.objects.all()
         username = request.POST.get('username')
@@ -14,13 +15,15 @@ def login(request):
                 request.session['user'] = username
                 return redirect('select')
     if request.POST.get('username'):
-        print(request.POST.get('username'))
         isLogin = 'TRUE'
     return render(request, 'login.html',{'isLogin':isLogin})
 
 
 def select(request):
-    return render(request, 'select.html')
+    user = request.session.get('user')
+    if(user == None):
+        return redirect('login')
+    return render(request, 'select.html',{'user':user})
 
 def show_material(request):
     material_item = material.objects.all()
