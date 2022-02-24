@@ -4,24 +4,19 @@ from .models import user,history,equipment,material
 
 
 def login(request):
-    isLogin = ''
-    username = ''
-    password = ''
-    if request.method == 'POST':     
+    isLogin = '' 
+    if request.method == 'POST':
         User = user.objects.all()
         username = request.POST.get('username')
         password = request.POST.get('password')
         for eachUser in User:  
             if username != '' and password !='' and username == eachUser.Username and password and eachUser.Password == password:
-                isLogin = 'True'
+                request.session['user'] = username
                 return redirect('select')
-            else:
-                isLogin = 'False'
-        if isLogin=='True':
-            print('OK')
-        elif isLogin=='False':
-            print('not OK')       
-    return render(request, 'login.html')
+    if request.POST.get('username'):
+        print(request.POST.get('username'))
+        isLogin = 'TRUE'
+    return render(request, 'login.html',{'isLogin':isLogin})
 
 
 def select(request):

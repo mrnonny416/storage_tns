@@ -8,9 +8,13 @@
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4 border p-3 rounded-lg bg-secondary">
                     <h2 style="text-align:center;">login</h2><br>
+                    {% if isLogin == 'TRUE' %}
+                    <h5 style="text-align:center; color:red;">ผู้ใช้หรือรหัสผ่านไม่ถูกต้องกรุณากรอกใหม่</h5>
+                    {% endif %}
                 <form action="" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
+                        
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
