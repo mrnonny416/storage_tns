@@ -13,8 +13,8 @@
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="{% url 'addlist'%}">add list</a>
-              <a class="dropdown-item" href="{% url 'delete'%}">delete</a>
-              <a class="dropdown-item" href="{% url 'edit'%}">edit</a>
+              <a class="dropdown-item" href="{% url 'delete_equipment'%}">delete</a>
+              <a class="dropdown-item" href="{% url 'edit_equipment'%}">edit</a>
             </div>
           </li>
         </ul>
@@ -36,87 +36,27 @@
           </div>
         </div>
 
-        <div class="container">          
-          <table class="table table-borderless">
-            <thead>
-              <tr>
-                <th><img src="{% static 'images/Equipment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
-                <th><img src="{% static 'images/Meterail.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
-                <th><img src="{% static 'images/Equipment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
-                <th><img src="{% static 'images/Meterail.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="table-sm">
-                <td class="text-center">Equiment 1</td>
-                <td class="text-center">Material 2</td>
-                <td class="text-center">Equiment 3</td>
-                <td class="text-center">Material 4</td>
-              </tr>
-              <tr class="text-center">
-                <td>
-                    <div>
-                      <button type="button" class="btn btn-outline-danger btn-sm">edit</button></div>
-                    </div>
-                </td>
-                <td>
-                  <div>
-                    <button type="button" class="btn btn-outline-danger btn-sm">edit</button></div>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <button type="button" class="btn btn-outline-danger btn-sm">edit</button></div>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <button type="button" class="btn btn-outline-danger btn-sm">edit</button></div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-                  
-            <thead>
-              <tr>
-                <th><img src="{% static 'images/Equipment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
-                <th><img src="{% static 'images/Meterail.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
-                <th><img src="{% static 'images/Equipment.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
-                <th><img src="{% static 'images/Meterail.jpg' %}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="table-sm">
-                <td class="text-center">Equiment 1</td>
-                <td class="text-center">Material 2</td>
-                <td class="text-center">Equiment 3</td>
-                <td class="text-center">Material 4</td>
-              </tr>
-              <tr class="text-center">
-                <td>
-                    <div>
-                      <button type="button" class="btn btn-outline-danger btn-sm">edit</button></div>
-                    </div>
-                </td>
-                <td>
-                  <div>
-                    <button type="button" class="btn btn-outline-danger btn-sm">edit</button></div>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <button type="button" class="btn btn-outline-danger btn-sm">edit</button></div>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <button type="button" class="btn btn-outline-danger btn-sm">edit</button></div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+       <div class="container">          
+        <table border="0">
+          <tr>
+            {% for item in equipment %}
+            <td>
+              <img src="static/media/{{ item.Picture }}" alt="static/media/{{ item.Picture }}"class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200">
+              <center><div class="pb-2">{{ item.Equipment }}</div></center>
+              <div class="row justify-content-md-center no-gutters">
+                <button type="button" class="btn btn-danger">Edit</button>
+              </div>
+            </td>
+
+            {% if forloop.counter|divisibleby:4 %} <!-- if(couter ของ Loop % 4 == 0)-->>
+          </tr><tr>
+            {% endif %}
+
+            {% endfor %}
+          </tr>
+        </table>
+      </div>
+
 
         <div>
           <a href="{% url 'select'%}">
