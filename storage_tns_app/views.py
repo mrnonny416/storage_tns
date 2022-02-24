@@ -1,4 +1,5 @@
 from asyncio.windows_events import NULL
+import re
 from django.shortcuts import redirect, render
 from .models import user,history,equipment,material
 
@@ -35,7 +36,16 @@ def show_equipment(request):
     user = request.session.get('user')
     if(user == None):
         return redirect('login')
-    equipment_item = equipment.objects.all()
+    if request.method == 'POST':
+        equipment_item = equipment.objects.filter(Equipment__contains = request.POST.get('keyword'))
+    else:
+        equipment_item = equipment.objects.all()
+    if request.method == 'GET' and request.GET.get('action'):
+        for items in equipment_item:
+            if int(request.GET.get('id')) == items.order:
+                equipment.objects.filter(order=items.order).update(Amount=items.Amount-1)
+                return redirect('show_equipment')
+        
     return render(request, 'show_equipment.html',{'equipment':equipment_item})
 
 def addlist(request):
