@@ -31,6 +31,7 @@ class history(models.Model):
     Action = models.CharField(max_length=50)
     DateTime = models.DateTimeField(default=datetime.now, blank=True)
     Amount = models.IntegerField()
+    Username = models.CharField(max_length=20)
     def __str__(self):
         return self.Equipment
 # Create your models here.
