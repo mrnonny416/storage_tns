@@ -36,6 +36,8 @@ def show_material(request):
             for items in material_item:
                 if int(request.GET.get('id')) == items.order:
                     material.objects.filter(order=items.order).update(Amount=items.Amount+int(request.GET.get('action')))
+                    if request.GET.get('action') == '1': history(Equipment=items, Type='Material',Action='Return', Amount=1,Username=user).save()
+                    elif request.GET.get('action') == '-1': history(Equipment=items, Type='Material',Action='Borrow', Amount=1,Username=user).save()
                     return redirect('show_material')
     return render(request, 'show_material.html', {'material': material_item, 'user': user})
 
@@ -51,6 +53,8 @@ def show_equipment(request):
         for items in equipment_item:
             if int(request.GET.get('id')) == items.order:
                 equipment.objects.filter(order=items.order).update(Amount=items.Amount+int(request.GET.get('action')))
+                if request.GET.get('action') == '1': history(Equipment=items, Type='Equipment',Action='Return', Amount=1,Username=user).save()
+                elif request.GET.get('action') == '-1': history(Equipment=items, Type='Equipment',Action='Borrow', Amount=1,Username=user).save()
                 return redirect('show_equipment')
     return render(request, 'show_equipment.html', {'equipment': equipment_item,'user':user})
 
@@ -68,15 +72,13 @@ def addlist(request):
         if type == 'equipment':
             equipment(Equipment=equipment_name,
                       Amount=amount, Picture=picture).save()
+            history(Equipment=equipment_name, Type=type,Action='ADD', Amount=amount,Username=user).save()
             return redirect('show_equipment')
         elif type == 'material':
             material(Material=equipment_name,
                      Amount=amount, Picture=picture).save()
+            history(Equipment=equipment_name, Type=type,Action='ADD', Amount=amount,Username=user).save()
             return redirect('show_material')
-        # บันทึกเข้าที่ DB.history
-        history(Equipment=equipment_name, Type=type,
-                Action='ADD', Amount=amount).save()
-
     return render(request, 'addlist.html', {'user': user})
 
 def edit_equipment(request):
@@ -130,6 +132,7 @@ def edit_equipment_save(request):
             equipment(Equipment=equipment_name,Amount=amount, Picture=picture).save()
         else:
             equipment.objects.filter(order=id).update(Equipment=equipment_name, Amount=amount)
+        history(Equipment=equipment_name, Type='Equipment',Action='edit', Amount=amount,Username=user).save()
     return redirect('edit_equipment')
 
 def edit_material_save(request):
@@ -140,14 +143,23 @@ def edit_material_save(request):
         if request.FILES:
             picture = request.FILES['customFile']
             material.objects.filter(order=request.GET.get('id')).delete()
-            material(Material=material_name,
-                     Amount=amount, Picture=picture).save()
+            material(Material=material_name,Amount=amount, Picture=picture).save()
         else:
-            material.objects.filter(order=id).update(
-                Material=material_name, Amount=amount)
+            material.objects.filter(order=id).update(Material=material_name, Amount=amount)
+        history(Equipment=material_name, Type='Equipment',Action='edit', Amount=amount,Username=user).save()
     return redirect('edit_material')
 
 def test(request):
 
     return render(request, 'test.html')
 
+def delete_material(request):
+    if request.method == 'GET' and request.GET.get('id'):
+        material.objects.filter(order=request.GET.get('id')).delete()
+    return redirect('edit_material')
+
+def delete_equipment(request):
+    if request.method == 'GET':
+        if request.GET.get('id'):
+            equipment.objects.filter(order=request.GET.get('id')).delete()
+    return redirect('edit_equipment')

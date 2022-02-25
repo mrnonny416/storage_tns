@@ -68,6 +68,15 @@
             </tr>
             <tr>
 {% endif %}
+{% empty %}
+<center>
+  <a class="dropdown-item" href="{% url 'addlist'%}">
+    <button class="btn btn-success">
+      เพิ่มอุปกรณ์/วัสดุ
+    </button>
+  </a>
+  <br><br>
+</center>
 {% endfor %}
             </tr>
           </table>        

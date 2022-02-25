@@ -14,6 +14,9 @@ class material(models.Model):
     Picture = models.ImageField(upload_to='material', blank=True)
     def __str__(self):
         return self.Material
+    def delete(self):
+        self.Picture.delete()
+        super(material, self).delete()
     
 class equipment(models.Model):
     order = models.AutoField(auto_created=True, primary_key=True)
@@ -22,6 +25,9 @@ class equipment(models.Model):
     Picture = models.ImageField(upload_to='equipment', blank=True)
     def __str__(self):
         return self.Equipment
+    def delete(self):
+        self.Picture.delete()
+        super(equipment, self).delete()
     
 
 class history(models.Model):
@@ -31,7 +37,9 @@ class history(models.Model):
     Action = models.CharField(max_length=50)
     DateTime = models.DateTimeField(default=datetime.now, blank=True)
     Amount = models.IntegerField()
-    Username = models.CharField(max_length=20)
+    Username = models.CharField(max_length=20, blank=True)
     def __str__(self):
-        return self.Equipment
+       #History = str(self.Username ,self.Action ,self.Type ,self.Equipment ,self.Amount)
+        History = self.Username+' '+self.Action +' '+self.Type +':'+self.Equipment +' (Amount:'+str(self.Amount)+')'
+        return History
 # Create your models here.
