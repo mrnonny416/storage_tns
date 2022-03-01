@@ -45,11 +45,15 @@ def main(request):
     user = request.session.get('user')
     if(user == None):
         return redirect('login')
+    searchBox = storage.objects.all()
     if request.method == 'POST':
-        items = storage.objects.filter(Name__contains=request.POST.get('keyword'))
+        keyword = request.POST.get('keyword')
+        items = storage.objects.filter(Name__contains = keyword)
+        return render(request, 'main.html',{'user':user,'storage':items,'keyword':keyword,'searchBox':searchBox})
     else:
         items = storage.objects.all()
-    return render(request, 'main.html',{'user':user,'storage':items})
+    print(searchBox)
+    return render(request, 'main.html',{'user':user,'storage':items,'searchBox':searchBox})
 
 def show_equipment(request):
     user = request.session.get('user')

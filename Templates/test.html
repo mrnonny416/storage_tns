@@ -4,24 +4,14 @@
 
 <body>
 
-<h3>Trigger Button Click on Enter</h3>
-<p>Press the "Enter" key inside the input field to trigger the button.</p>
-
-<input id="myInput" onkeypress="myFunction()">
-<button id="myBtn" onclick="javascript:alert('Hello World!')">Button</button>
-
-<script>
-function myFunction() {
-var input = document.getElementById("myInput");
-input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("myBtn").click();
-  }
-});
-}
-</script>
-
+  <label for="cars">Search cars: <input list="cars" name="cars" type="text">
+  </label>
+  <datalist id="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+  </datalist>
 </body>
 
 
