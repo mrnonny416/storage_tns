@@ -1,59 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-<style>
-    .container {
-      position: relative;
-      width: 50%;
-    }
-    
-    .image {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    
-    .overlay {
-      position: absolute;
-      bottom: 100%;
-      left: 0;
-      right: 0;
-      background-color: black;
-      overflow: hidden;
-      width: 100%;
-      height:0;
-      transition: .5s ease;
-      opacity: 0.8;
-    }
-    
-    .container:hover .overlay {
-      bottom: 0;
-      height: 100%;
-    }
-    
-    .text {
-      color: white;
-      font-size: 20px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-    </style>
-    </head>
-    <body>
-    
-    <h2>Slide in Overlay from the Top</h2>
-    <p>Hover over the image to see the effect.</p>
-    
-    <div class="container">
-      <img src="img_avatar.png" alt="Avatar" class="image">
-      <div class="overlay">
-        <div class="text">Hello World</div>
-      </div>
-    </div>
+<!DOCTYPE html>
 
-    </body>
+<body>
+
+<h3>Trigger Button Click on Enter</h3>
+<p>Press the "Enter" key inside the input field to trigger the button.</p>
+
+<input id="myInput" onkeypress="myFunction()">
+<button id="myBtn" onclick="javascript:alert('Hello World!')">Button</button>
+
+<script>
+function myFunction() {
+var input = document.getElementById("myInput");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("myBtn").click();
+  }
+});
+}
+</script>
+
+</body>
+
+
 {% endblock content %}

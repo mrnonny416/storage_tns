@@ -1,7 +1,7 @@
 from asyncio.windows_events import NULL
 import re
 from django.shortcuts import redirect, render
-from .models import user, history, equipment, material
+from .models import user, history, equipment, material, storage
 
 def login(request):
     isLogin = ''
@@ -40,6 +40,16 @@ def show_material(request):
                     elif request.GET.get('action') == '-1': history(Equipment=items, Type='Material',Action='Borrow', Amount=1,Username=user).save()
                     return redirect('show_material')
     return render(request, 'show_material.html', {'material': material_item, 'user': user})
+
+def main(request):
+    user = request.session.get('user')
+    if(user == None):
+        return redirect('login')
+    if request.method == 'POST':
+        items = storage.objects.filter(Name__contains=request.POST.get('keyword'))
+    else:
+        items = storage.objects.all()
+    return render(request, 'main.html',{'user':user,'storage':items})
 
 def show_equipment(request):
     user = request.session.get('user')

@@ -18,7 +18,7 @@ from xml.dom.minidom import Document
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
-from storage_tns_app.views import delete_material,delete_equipment,login,select,show_material,show_equipment,addlist,edit_equipment,edit_equipment_detail,edit_material,edit_material_detail,test,edit_equipment_save,edit_material_save
+from storage_tns_app.views import delete_material,delete_equipment,login,select,show_material,show_equipment,addlist,edit_equipment,edit_equipment_detail,edit_material,edit_material_detail,test,edit_equipment_save,edit_material_save,main
 from django.contrib import admin
 
 
@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^delete_material$',delete_material,name='delete_material'),
     url(r'^delete_equipment$',delete_equipment,name='delete_equipment'),
     url(r'^test$',test,name='test'),
+    url(r'^main$',main,name='main'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL ,document_root=settings.MEDIA_ROOT)
