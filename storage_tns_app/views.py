@@ -95,6 +95,22 @@ def addlist(request):
             return redirect('show_material')
     return render(request, 'addlist.html', {'user': user})
 
+def add_storage(request):
+    user = request.session.get('user')
+    if(user == None):
+        return redirect('login')
+    if request.method == 'POST':
+        # ตัวแปร สำหรับบันทึกค่า
+        name = request.POST.get('name')
+        brand = request.POST.get('brand')
+        type = request.POST.get('type')
+        category = request.POST.get('category')
+        amount = request.POST.get('amount')
+        picture = request.FILES['customFile']
+        # บันทึกเข้าที่ DB.
+        storage(Name=name, Brand=brand, Type=type, Category=category, Amount=amount, Picture=picture).save()
+    return render(request, 'add_storage.html', {'user': user})
+
 def edit_equipment(request):
     user = request.session.get('user')
     if(user == None):
