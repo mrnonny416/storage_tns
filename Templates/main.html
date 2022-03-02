@@ -4,80 +4,58 @@
 </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light d-flex sticky-top" style="background-color: #e3f2fd;">
-        <div class="mr-auto">
-        <ul class="navbar-nav">
-          <!-- Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              MENU
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="{% url 'addlist'%}">เพิ่มวัสดุ/อุปกรณ์</a>
-              <a class="dropdown-item" href="{% url 'edit_equipment'%}">แก้ไขรายการอุปกรณ์</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-          <div class="p2">{{ user }}
-          <a href="{% url 'login' %}"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
-        </div>
-      </nav>
-      <br>
-        <center><h1>รายการวัสดุ อุปกรณ์</h1></center>
-
-        <div class="row p-3 mr-2">
-            <div class="col-sm-9"></div>
-            <div class="col-sm-2">
-              <form class="form-inline" Action="main" method="POST" name="search" id="search">
-                {% csrf_token %}
-                  <i class="fas fa-search" aria-hidden="true"></i>
-                  <script>
-                    document.getElementById('keyword').submit()
-                  </script>
-                  <input class="form-control form-control-sm ml-3 w-75" type="text" list="items" placeholder="Search" aria-label="Search" id="keyword" name="keyword" value ="{{ keyword }}" onchange="this.form.submit()">
-                  <datalist id="items">
-                    {% for item in searchBox %}
-                      <option value="{{ item.Name }}">{{ Item.Name }} </option>
-                    {% endfor %}
-                  </datalist>
-              </form>
-            </div>
+      <div class="mr-auto">
+      <ul class="navbar-nav">
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            MENU
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'addlist'%}">เพิ่มวัสดุ/อุปกรณ์</a>
+            <a class="dropdown-item" href="{% url 'edit_equipment'%}">แก้ไขรายการอุปกรณ์</a>
           </div>
-          <div class="container">   
-            <table border="0">
-              <tr>
-                {% for item in storage %}
-                <td>
-                  <img src="static/media/{{ item.Picture }}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200" alt="{{ item.Picture }}">
-                  <center><div class="pb-2">{{ item.Name }}</div></center>
-                  <div class="number-input md-number-input row justify-content-md-center no-gutters">
-                    {% if item.Amount > 0 %}
-                                    <a href="show_material?id={{ item.order}}&action=-1">
-                                      <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus btn btn-outline-danger btn-sm">
-                                        ยืม
-                                      </button>
-                                    </a>
-                    {% else %}
-                                    <a href="#">
-                                      <button onclick="" class="minus btn btn-outline-danger btn-sm disabled">
-                                        ยืม
-                                      </button>
-                                    </a>
-                    {% endif %}
-                                    <div class="col-sm-4 pl-1 pr-1">
-                                      <input class="form-control quantity form-control-sm" min="0" name="quantity" value="{{ item.Amount }}" type="number">
-                                    </div>
-                                    <a href="show_material?id={{ item.order}}&action=1">
-                                      <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus btn btn-outline-success btn-sm">
-                                        คืน
-                                      </button>
-                                    </a>
-                                  </div>
-                </td>
-                {% if forloop.counter|divisibleby:4 %} <!-- if(couter ของ Loop % 4 == 0)-->
-              </tr><tr>
-                {% endif %}
-            {% empty %}
+        </li>
+      </ul>
+    </div>
+        <div class="p2">{{ user }}
+        <a href="{% url 'login' %}"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+      </div>
+    </nav>
+    <br>
+      <center><h1>รายการวัสดุ อุปกรณ์</h1></center>
+      <!--END Navbar-->
+
+      <div class="row p-3 mr-2">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-2">
+          <form class="form-inline" Action="main" method="POST" name="search" id="search">
+            {% csrf_token %}
+              <i class="fas fa-search" aria-hidden="true"></i>
+              <script>
+                document.getElementById('keyword').submit()
+              </script>
+              <input class="form-control form-control-sm ml-3 w-75" type="text" list="items" placeholder="Search" aria-label="Search" id="keyword" name="keyword" value ="{{ keyword }}" onchange="this.form.submit()">
+              <datalist id="items">
+                {% for item in searchBox %}
+                  <option value="{{ item.Name }}">{{ Item.Name }} </option>
+                {% endfor %}
+              </datalist>
+          </form>
+        </div>
+      </div>
+      <!--End Search-->
+
+      <div class="container">
+        <div class="d-flex align-content-start justify-content-center flex-wrap">
+          {% for item in storage %}
+          <div class="p-3 text-center">
+            <a href="product?id={{ item.order }}">
+            <img src="static/media/{{ item.Picture }}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200" alt="{{ item.Picture }}"></a>
+            <div>{{ item.Name }}</div>
+            จำนวน : <mark><code>{{ item.Amount }}</code></mark>
+          </div>
+          {% empty %}
             <center>
               <a class="dropdown-item" href="{% url 'addlist'%}">
                 <button class="btn btn-success">
@@ -85,18 +63,17 @@
                 </button>
               </a>
               <br><br>
-            </center>
-            {% endfor %}
-              </tr>
-            </table>        
-          </div>
-  
-              <div>
-                <a href="{% url 'select'%}">
-                <center><button type="button" class="btn btn-dark"><i class="fas fa-home"></i></button></center>
-                </a>
-              </div>
-              <br>
+          {% endfor %}
+        </div>
 
-    </body>
-    {% endblock content %}
+      </div><!--End container-->
+
+      <div>
+        <a href="{% url 'select'%}">
+        <center><button type="button" class="btn btn-dark"><i class="fas fa-home"></i></button></center>
+        </a>
+      </div>
+      <br>
+
+  </body>
+{% endblock content %}

@@ -180,8 +180,8 @@ def edit_material_save(request):
     return redirect('edit_material')
 
 def test(request):
-
-    return render(request, 'test.html')
+    items = storage.objects.all()
+    return render(request, 'test.html',{'storage':items})
 
 def delete_material(request):
     if request.method == 'GET' and request.GET.get('id'):
@@ -193,3 +193,8 @@ def delete_equipment(request):
         if request.GET.get('id'):
             equipment.objects.filter(order=request.GET.get('id')).delete()
     return redirect('edit_equipment')
+
+def product(request):
+    if request.method == 'GET':
+        items = storage.objects.filter(order=request.GET.get('id'))
+    return render(request, 'product.html',{'storage':items})
