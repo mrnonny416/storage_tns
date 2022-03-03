@@ -4,6 +4,7 @@ from .models import user, history, storage, brand as brandDB
 
 def login(request):
     isLogin = ''
+    user = request.session.get('user')
     request.session['user'] = None  # reset session('user')=NULL
     if request.method == 'POST':
         User = user.objects.all()
@@ -24,17 +25,20 @@ def main(request):
     searchBox = storage.objects.all()
     if request.method == 'POST':
         keyword = request.POST.get('keyword')
-        items = storage.objects.filter(Name__contains = keyword)
-        return render(request, 'main.html',{'user':user,'storage':items,'keyword':keyword,'searchBox':searchBox})
+        type = request.POST.get('type')
+        category = request.POST.get('category')
+        items = storage.objects.filter(Name__contains = keyword , Type__contains = type , Category__contains = category)
+        print(request.POST.get('reset'))
+        return render(request, 'main.html',{'user':user,'storage':items,'keyword':keyword,'searchBox':searchBox ,'type':type,'category':category})
     else:
         items = storage.objects.all()
     return render(request, 'main.html',{'user':user,'storage':items,'searchBox':searchBox})
 
 def add_storage(request):
     user = request.session.get('user')
-    Brand = brandDB.objects.all()
     if(user == None):
         return redirect('login')
+    Brand = brandDB.objects.all()
     if request.method == 'POST':
         # ตัวแปร สำหรับบันทึกค่า
         name = request.POST.get('name')
@@ -82,3 +86,6 @@ def action(user,id,submit,quantity):
                     history(Name_order=id,Name=item.Name, Brand=item.Brand, Type=item.Type,Action='Return', Category=item.Category, Amount=quantity,Username=user).save()
                     return 'True'
     return 'False'
+
+def logout(request):
+    return request

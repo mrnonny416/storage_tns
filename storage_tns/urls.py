@@ -18,7 +18,7 @@ from xml.dom.minidom import Document
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
-from storage_tns_app.views import login,test,main,add_storage,product 
+from storage_tns_app.views import login,test,main,add_storage,product,logout 
 from django.contrib import admin
 
 
@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^main$',main,name='main'),
     url(r'^add_storage$',add_storage,name='add_storage'),
     url(r'^product$',product,name='product'),
+    url(r'^logout$',logout,name='logout'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL ,document_root=settings.MEDIA_ROOT)

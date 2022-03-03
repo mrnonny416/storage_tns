@@ -27,15 +27,22 @@
       <!--END Navbar-->
 
       <div class="row p-3 mr-2">
-        <div class="col-sm-9"></div>
-        <div class="col-sm-2">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-5">
           <form class="form-inline" Action="main" method="POST" name="search" id="search">
             {% csrf_token %}
-              <i class="fas fa-search" aria-hidden="true"></i>
-              <script>
-                document.getElementById('keyword').submit()
-              </script>
-              <input class="form-control form-control-sm ml-3 w-75" type="text" list="items" placeholder="Search" aria-label="Search" id="keyword" name="keyword" value ="{{ keyword }}" onchange="this.form.submit()">
+            <select name="type" class="custom-select mr-3" onchange="this.form.submit()">
+              <option value="" {% if type == '' %}selected{% endif %}>-ประเภท-</option>
+              <option value="material" {% if type == 'material' %}selected{% endif %}>วัสดุ</option>
+              <option value="equipment" {% if type == 'equipment' %}selected{% endif %}>อุปกรณ์</option>
+            </select>
+            <select name="category" class="custom-select mr-3" onchange="this.form.submit()">
+              <option value="" {% if category == '' %}selected{% endif %}>-ลักษณะงาน-</option>
+              <option value="Network" {% if category == 'Network' %}selected{% endif %}>Network</option>
+              <option value="Interior"{% if category == 'Interior' %}selected{% endif %}>Interior</option>
+            </select>
+              <i class="fas fa-search ml-2" aria-hidden="true"></i>
+              <input class="form-control form-control-sm ml-1 w-70" type="text" list="items" placeholder="Search" aria-label="Search" id="keyword" name="keyword" value ="{{ keyword }}">
               <datalist id="items">
                 {% for item in searchBox %}
                   <option value="{{ item.Name }}">{{ Item.Name }} </option>
