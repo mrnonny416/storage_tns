@@ -29,21 +29,21 @@
   </nav>
   <br>
     <center><h1>รายการวัสดุ อุปกรณ์</h1></center>
+  <br>
     <!--END Navbar-->
-<div class="container mt-3 ">
-  <div class="d-flex mb-3 flex-wrap" style="height:80%">
-    <div class="p-2">
+<div class="container mt-3">
+  <div class="d-flex mb-3 flex-wrap justify-content-center" style="height:80%">
+    <div class="p-2 pr-3 pl-3">
       <div><img src="static/media/{{ item.Picture }}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="250" height="250" alt="{{ item.Picture }}"></a></div>
       <input type="hidden" id="id" name="id" value="{{ item.order }}">
       <div><h3>ชื่อ : {{ item.Name }}</h3></div>
       <div><h3>ยี่ห้อ : {{ item.Brand }}</h3></div>
       <div><h3>ประเภท : {{ item.Category }}</h3></div>
-      
     </div>
 
     <div class="p-2 align-self-start">
       <h4>จำนวนทั้งหมด : </h4>
-      <div class=" d-flex bg-success p-2 border shadow-lg p-2 mb-3 rounded">
+      <div class=" d-flex bg-success p-2 shadow-lg p-2 mb-3 rounded">
           <div class="flex-fill justify-content-start text-white"><h1 class="display-3">{{ item.Amount }}</h1></div>
           <div class="align-self-end text-white"><h4>หน่วย</h4></div>
       </div>
@@ -69,18 +69,23 @@
           <button type="submit" class="btn btn-success" id="submit" name="submit" value="return" ><h1>คืน</h1></button>
         </div>
       </div>
-      {% if Success == 'True' %}
-        ทำการบันทึกสำเร็จ
-      {% elif Success == 'False' %}
-        ทำการบันทึกไม่สำเร็จ
-      {% endif %}
+      <br>
+      <div class="text-center">
+        {% if Success == 'True' %}
+          <h4 style="color:DarkBlue;">ทำการบันทึกสำเร็จ</h>
+        {% elif Success == 'False' %}
+          <h4 style="color:DarkRed;">ทำการบันทึกไม่สำเร็จ</h>
+        {% endif %}
+      </div>
     </div>
 
-    <div class="p-2 border flex-fill" >
-      <div class="p-2 bg-info border">ประวัติ</div>
-      {% for transaction in transactions %}
-      <p>{{transaction.Username}} : {{transaction.Name}} : {{ transaction.Action }} : {{ transaction.Amount }}</p>
-      {% endfor%}
+    <div class="p-2" >
+      <div class=" font-weight-bold text-center "><h1>ประวัติ</h1></div>
+      <div class="p-2  pl-2">
+        {% for transaction in transactions %}
+        <h5>{{transaction.Username}} : {{transaction.Action}} : {{ transaction.Name }} จำนวน {{ transaction.Amount }}</h5>
+        {% endfor%}
+      </div>
     </div>
   </div>
 </div>
