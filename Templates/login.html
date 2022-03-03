@@ -20,9 +20,9 @@ body, html {
             <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4 border p-3 rounded-lg bg-secondary">
-                    <h2 style="text-align:center;">login</h2><br>
+                    <h1 style="text-align:center;">login</h1>
                     {% if isLogin == 'TRUE' %}
-                    <h5 style="text-align:center; color:red;">ผู้ใช้หรือรหัสผ่านไม่ถูกต้องกรุณากรอกใหม่</h5>
+                    <h5 style="text-align:center; color:orange;">ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่</h5>
                     {% endif %}
                 <form action="" method="post">
                     {% csrf_token %}

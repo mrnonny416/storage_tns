@@ -3,7 +3,10 @@
 {% load static %}
 </head>
 <body>
+
     {% for item in storage %}
+<form Action="#" method="POST">
+    {% csrf_token %}
   <nav class="navbar navbar-expand-lg navbar-light d-flex sticky-top" style="background-color: #e3f2fd;">
     <div class="mr-auto">
     <ul class="navbar-nav">
@@ -13,8 +16,9 @@
           MENU
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="{% url 'addlist'%}">เพิ่มวัสดุ/อุปกรณ์</a>
-          <a class="dropdown-item" href="{% url 'edit_equipment'%}">แก้ไขรายการอุปกรณ์</a>
+          <a class="dropdown-item" href="{% url 'main'%}">หน้าหลัก</a>
+          <a class="dropdown-item" href="{% url 'add_storage'%}">เพิ่มวัสดุ/อุปกรณ์</a>
+          <a class="dropdown-item" href="{% url 'admin:index'%}">Admin</a>
         </div>
       </li>
     </ul>
@@ -27,44 +31,57 @@
     <center><h1>รายการวัสดุ อุปกรณ์</h1></center>
     <!--END Navbar-->
 <div class="container mt-3 ">
-  <div class="d-flex  " style="height:80%">
+  <div class="d-flex mb-3 flex-wrap" style="height:80%">
     <div class="p-2">
-      <div><img src="static/media/{{ item.Picture }}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200" alt="{{ item.Picture }}"></a></div>
+      <div><img src="static/media/{{ item.Picture }}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="250" height="250" alt="{{ item.Picture }}"></a></div>
+      <input type="hidden" id="id" name="id" value="{{ item.order }}">
       <div><h3>ชื่อ : {{ item.Name }}</h3></div>
       <div><h3>ยี่ห้อ : {{ item.Brand }}</h3></div>
       <div><h3>ประเภท : {{ item.Category }}</h3></div>
-      จำนวนทั้งหมด
-      <div class=" d-flex bg-success p-2 border shadow-lg p-2 mb-3 rounded">
-          <div class="flex-fill justify-content-start text-white"><h1 class="display-3">{{ item.Amount }}</h1></div>
-          <div class="align-self-end"><h4>หน่วย</h4></div>
-      </div>
     </div>
 
-    <div class="p-2 border bg-info">
-      <div class="d-flex border bg-danger">
-        <div class="border">
-          <button onclick="FunctionStepDown()" class="minus btn btn-outline-danger btn-lg" >
+    <div class="p-2 align-self-start">
+      <h4>จำนวนทั้งหมด : </h4>
+      <div class=" d-flex bg-success p-2 border shadow-lg p-2 mb-3 rounded">
+          <div class="flex-fill justify-content-start text-white"><h1 class="display-3">{{ item.Amount }}</h1></div>
+          <div class="align-self-end text-white"><h4>หน่วย</h4></div>
+      </div>
+      <div class="d-flex pt-3 mb-3 justify-content-center">
+        <div class="p-2 ">
+          <button type="button" onclick="FunctionStepDown()" class="minus btn btn-outline-danger btn-lg" >
             <h1> -</h1>
         </button></div>
-        <div class="border">
-            <input class="form-control quantity form-control-lg" style="width:80px"min="0" name="quantity" id="quantity" type="number" value="0">
+        <div class="p-2 pl-1 pr-1 align-self-center ">
+            <input class="form-control quantity form-control-lg" style="width:80px" min="0" name="quantity" id="quantity" type="number" value="0">
         </div>
-        <div class="border">
-          <button onclick="FunctionStepUp()" class="plus btn btn-outline-success btn-lg">
+        <div class="p-2">
+          <button type="button" onclick="FunctionStepUp()" class="plus btn btn-outline-success btn-lg">
             <h1> + </h1>
           </button>
         </div>
       </div>
-    
-
-      <div class="d-flex border bg-warning">
-        <div><button type="button" class="btn btn-success"><h1>ยืม</h1></button></div>
-        <div ><button type="button" class="btn btn-danger"><h1>คืน</h1></button></div>
+      <div class="d-flex justify-content-center">
+        <div class="pr-3">
+            <button type="submit" class="btn btn-danger" id="submit" name="submit" value="borrow"><h1>ยืม</h1></button>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-success" id="submit" name="submit" value="return" ><h1>คืน</h1></button>
+        </div>
       </div>
+      {% if Success == 'True' %}
+        ทำการบันทึกสำเร็จ
+      {% elif Success == 'False' %}
+        ทำการบันทึกไม่สำเร็จ
+      {% endif %}
     </div>
 
     <div class="p-2 border flex-fill" >
-      <div class="p-2 bg-info border">ประวัติ</div>
+      <div class="p-2 border">ประวัติ</div>
+      <div class="border">
+        {% for transaction in transactions %}
+        <p>{{transaction.Username}} : {{transaction.Action}} : {{ transaction.Name }} : {{ transaction.Amount }}</p>
+        {% endfor%}
+      </div>
     </div>
   </div>
 </div>
@@ -77,5 +94,6 @@
     document.getElementById("quantity").stepDown(1);
   }
   </script>
+</form>
   </body>
 {% endblock content %}
