@@ -12,8 +12,8 @@
             MENU
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="{% url 'addlist'%}">เพิ่มวัสดุ/อุปกรณ์</a>
-            <a class="dropdown-item" href="{% url 'edit_equipment'%}">แก้ไขรายการอุปกรณ์</a>
+            <a class="dropdown-item" href="{% url 'add_storage'%}">เพิ่มวัสดุ/อุปกรณ์</a>
+            <a class="dropdown-item" href="{% url 'admin:index'%}">Admin</a>
           </div>
         </li>
       </ul>
@@ -50,14 +50,14 @@
         <div class="d-flex align-content-start justify-content-center flex-wrap">
           {% for item in storage %}
           <div class="p-3 text-center">
-            <a href="product?id={{ item.order }}">
+            <a href="product?id={{ item.order }}" target="_blank">
             <img src="static/media/{{ item.Picture }}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200" alt="{{ item.Picture }}"></a>
             <div>{{ item.Name }}</div>
             จำนวน : <mark><code>{{ item.Amount }}</code></mark>
           </div>
           {% empty %}
             <center>
-              <a class="dropdown-item" href="{% url 'addlist'%}">
+              <a class="dropdown-item" href="{% url 'add_storage'%}">
                 <button class="btn btn-success">
                   เพิ่มอุปกรณ์/วัสดุ
                 </button>
@@ -68,12 +68,7 @@
 
       </div><!--End container-->
 
-      <div>
-        <a href="{% url 'select'%}">
-        <center><button type="button" class="btn btn-dark"><i class="fas fa-home"></i></button></center>
-        </a>
-      </div>
-      <br>
+      
 
   </body>
 {% endblock content %}

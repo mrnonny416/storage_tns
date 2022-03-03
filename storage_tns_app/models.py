@@ -48,6 +48,7 @@ class equipment(models.Model):
 
 class history(models.Model):
     order = models.AutoField(auto_created=True, primary_key=True)
+    Name_order =models.IntegerField(blank=True)
     Name = models.CharField(max_length=50)
     Brand = models.CharField(max_length=50, blank=True)
     Type = models.CharField(max_length=50)
@@ -61,3 +62,11 @@ class history(models.Model):
         History = self.Username+' '+self.Action +' '+self.Type +':'+self.Name +' (Amount:'+str(self.Amount)+')'
         return History
 # Create your models here.
+
+
+class brand(models.Model):
+    order = models.AutoField(auto_created=True, primary_key=True)
+    Brand = models.CharField(max_length=50, blank=True)
+    def __str__(self):
+        return self.Brand
+    

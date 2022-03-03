@@ -3,16 +3,79 @@
 {% load static %}
 </head>
 <body>
-  <div class="d-flex mb-3">
-    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus btn btn-outline-danger btn-sm" >
-      <h1> -</h1>
-      </button>
-<div class="p-2 col-sm-4 pl-1 pr-1 border">
-<input class="form-control  " min="0" name="quantity"  type="number" value="0">
+    {% for item in storage %}
+  <nav class="navbar navbar-expand-lg navbar-light d-flex sticky-top" style="background-color: #e3f2fd;">
+    <div class="mr-auto">
+    <ul class="navbar-nav">
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          MENU
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'addlist'%}">เพิ่มวัสดุ/อุปกรณ์</a>
+          <a class="dropdown-item" href="{% url 'edit_equipment'%}">แก้ไขรายการอุปกรณ์</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+      <div class="p2">{{ user }}
+      <a href="{% url 'login' %}"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+    </div>
+  </nav>
+  <br>
+    <center><h1>รายการวัสดุ อุปกรณ์</h1></center>
+    <!--END Navbar-->
+<div class="container mt-3 ">
+  <div class="d-flex  " style="height:80%">
+    <div class="p-2">
+      <div><img src="static/media/{{ item.Picture }}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200" alt="{{ item.Picture }}"></a></div>
+      <div><h3>ชื่อ : {{ item.Name }}</h3></div>
+      <div><h3>ยี่ห้อ : {{ item.Brand }}</h3></div>
+      <div><h3>ประเภท : {{ item.Category }}</h3></div>
+      จำนวนทั้งหมด
+      <div class=" d-flex bg-success p-2 border shadow-lg p-2 mb-3 rounded">
+          <div class="flex-fill justify-content-start text-white"><h1 class="display-3">{{ item.Amount }}</h1></div>
+          <div class="align-self-end"><h4>หน่วย</h4></div>
+      </div>
+    </div>
+
+    <div class="p-2 border bg-info">
+      <div class="d-flex border bg-danger">
+        <div class="border">
+          <button onclick="FunctionStepDown()" class="minus btn btn-outline-danger btn-lg" >
+            <h1> -</h1>
+        </button></div>
+        <div class="border">
+            <input class="form-control quantity form-control-lg" style="width:80px"min="0" name="quantity" id="quantity" type="number" value="0">
+        </div>
+        <div class="border">
+          <button onclick="FunctionStepUp()" class="plus btn btn-outline-success btn-lg">
+            <h1> + </h1>
+          </button>
+        </div>
+      </div>
+    
+
+      <div class="d-flex border bg-warning">
+        <div><button type="button" class="btn btn-success"><h1>ยืม</h1></button></div>
+        <div ><button type="button" class="btn btn-danger"><h1>คืน</h1></button></div>
+      </div>
+    </div>
+
+    <div class="p-2 border flex-fill" >
+      <div class="p-2 bg-info border">ประวัติ</div>
+    </div>
+  </div>
 </div>
-  <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus btn btn-outline-success btn-sm">
-  <h1> + </h1>
-  </button>
-</div>
+{%endfor%}
+<script>
+  function FunctionStepUp() {/*from  w  ww . ja  va  2 s  .c  om*/
+    document.getElementById("quantity").stepUp(1);
+  }
+  function FunctionStepDown() {/*from  w  ww . ja  va  2 s  .c  om*/
+    document.getElementById("quantity").stepDown(1);
+  }
+  </script>
   </body>
 {% endblock content %}

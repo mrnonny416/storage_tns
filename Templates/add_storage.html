@@ -14,8 +14,8 @@
                 MENU
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'show_equipment'%}">Equiment</a>
-                <a class="dropdown-item" href="{% url 'show_material'%}">Material</a>
+                <a class="dropdown-item" href="{% url 'main'%}">หน้าหลัก</a>
+                <a class="dropdown-item" href="{% url 'admin:index'%}">Admin</a>
               </div>
             </li>
           </ul>
@@ -42,7 +42,12 @@
           <div class="col-sm-5"></div>
           <div class="form-inline">
               <label class="mb-2 mr-sm-2">Brand:</label>
-              <input type="text" class="form-control mb-2 mr-sm-2 ml-2" id="brand" name="brand" value="">
+              <input type="text" class="form-control mb-2 mr-sm-2 ml-2" id="brand" name="brand" value="" list="items">
+              <datalist id="items">
+                {% for item in Brand %}
+                  <option value="{{ item }}">{{ item }} </option>
+                {% endfor %}
+              </datalist>
           </div>
         </div>
 
@@ -104,9 +109,9 @@
           <button type="Cancel" class="btn btn-danger">Cancel</button>
       </div>
   </div>
-        <br><br><br><br><br><br><br><br>  
+        <br><br><br><br> 
         <footer>
-          <a href="{% url 'select'%}">
+          <a href="{% url 'main'%}">
           <center><button type="button" class="btn btn-dark"><i class="fas fa-home"></i></button></center>
           </a>
         </footer>
