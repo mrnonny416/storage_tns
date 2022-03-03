@@ -48,14 +48,16 @@ class equipment(models.Model):
 
 class history(models.Model):
     order = models.AutoField(auto_created=True, primary_key=True)
-    Equipment = models.CharField(max_length=50)
+    Name = models.CharField(max_length=50)
+    Brand = models.CharField(max_length=50, blank=True)
     Type = models.CharField(max_length=50)
     Action = models.CharField(max_length=50)
+    Category = models.CharField(max_length=50, blank=True)
     DateTime = models.DateTimeField(default=datetime.now, blank=True)
     Amount = models.IntegerField()
     Username = models.CharField(max_length=20, blank=True)
     def __str__(self):
        #History = str(self.Username ,self.Action ,self.Type ,self.Equipment ,self.Amount)
-        History = self.Username+' '+self.Action +' '+self.Type +':'+self.Equipment +' (Amount:'+str(self.Amount)+')'
+        History = self.Username+' '+self.Action +' '+self.Type +':'+self.Name +' (Amount:'+str(self.Amount)+')'
         return History
 # Create your models here.

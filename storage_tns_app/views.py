@@ -109,6 +109,7 @@ def add_storage(request):
         picture = request.FILES['customFile']
         # บันทึกเข้าที่ DB.
         storage(Name=name, Brand=brand, Type=type, Category=category, Amount=amount, Picture=picture).save()
+        history(Name=name, Brand=brand, Type=type,Action='ADD', Category=category, Amount=amount,Username=user).save()
     return render(request, 'add_storage.html', {'user': user})
 
 def edit_equipment(request):
