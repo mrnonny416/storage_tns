@@ -1,8 +1,6 @@
-from asyncio.windows_events import NULL
-from pickle import TRUE
-import re
+
 from django.shortcuts import redirect, render
-from .models import user, history, equipment, material, storage, brand as brandDB
+from .models import user, history, storage, brand as brandDB
 
 def login(request):
     isLogin = ''

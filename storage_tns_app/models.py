@@ -7,18 +7,6 @@ class user(models.Model):
     def __str__(self):
         return self.Username
     
-class material(models.Model):
-    order = models.AutoField(auto_created=True, primary_key=True)
-    Material = models.CharField(max_length=50)
-    Type = models.CharField(max_length=50, blank=True)
-    Category = models.CharField(max_length=50, blank=True)
-    Amount = models.IntegerField()
-    Picture = models.ImageField(upload_to='material', blank=True)
-    def __str__(self):
-        return self.Material
-    def delete(self):
-        self.Picture.delete()
-        super(material, self).delete()
         
 class storage(models.Model):
     order = models.AutoField(auto_created=True, primary_key=True)
@@ -27,24 +15,12 @@ class storage(models.Model):
     Type = models.CharField(max_length=50, blank=True)
     Category = models.CharField(max_length=50, blank=True)
     Amount = models.IntegerField()
-    Picture = models.ImageField(upload_to='material', blank=True)
+    Picture = models.ImageField(upload_to='storage', blank=True)
     def __str__(self):
         return self.Name
     def delete(self):
         self.Picture.delete()
-        super(material, self).delete()
-    
-class equipment(models.Model):
-    order = models.AutoField(auto_created=True, primary_key=True)
-    Equipment = models.CharField(max_length=50)
-    Amount = models.IntegerField()
-    Picture = models.ImageField(upload_to='equipment', blank=True)
-    def __str__(self):
-        return self.Equipment
-    def delete(self):
-        self.Picture.delete()
-        super(equipment, self).delete()
-    
+        super(storage, self).delete()
 
 class history(models.Model):
     order = models.AutoField(auto_created=True, primary_key=True)
@@ -63,10 +39,10 @@ class history(models.Model):
         return History
 # Create your models here.
 
-
 class brand(models.Model):
     order = models.AutoField(auto_created=True, primary_key=True)
     Brand = models.CharField(max_length=50, blank=True)
     def __str__(self):
         return self.Brand
+    
     
