@@ -28,7 +28,6 @@ def main(request):
         return render(request, 'main.html',{'user':user,'storage':items,'keyword':keyword,'searchBox':searchBox})
     else:
         items = storage.objects.all()
-    print(searchBox)
     return render(request, 'main.html',{'user':user,'storage':items,'searchBox':searchBox})
 
 def add_storage(request):
@@ -46,7 +45,11 @@ def add_storage(request):
         picture = request.FILES['customFile']
         # บันทึกเข้าที่ DB.
         storage(Name=name, Brand=brand, Type=type, Category=category, Amount=amount, Picture=picture).save()
-        history(Name=name, Brand=brand, Type=type,Action='ADD', Category=category, Amount=amount,Username=user).save()
+        storage_add = reversed(storage.objects.all())
+        for item in storage_add:
+            Name_order = item.order
+            break
+        history(Name_order=Name_order,Name=name, Brand=brand, Type=type,Action='ADD', Category=category, Amount=amount,Username=user).save()
     return render(request, 'add_storage.html', {'user': user,'Brand':Brand})
 
 def test(request):
