@@ -4,8 +4,11 @@ from .models import user, history, storage, brand as brandDB
 
 def login(request):
     isLogin = ''
-    user = request.session.get('user')
-    request.session['user'] = None  # reset session('user')=NULL
+    if request.session.get('user') != None:
+        return redirect('main')
+    else:
+        logout(request)
+      # reset session('user')=NULL
     if request.method == 'POST':
         User = user.objects.all()
         username = request.POST.get('username')
@@ -40,6 +43,8 @@ def add_storage(request):
         return redirect('login')
     Brand = brandDB.objects.all()
     if request.method == 'POST':
+        if request.POST.get('submit') != 'OK':
+            return redirect('main')
         # ตัวแปร สำหรับบันทึกค่า
         name = request.POST.get('name')
         brand = request.POST.get('brand')
@@ -88,4 +93,8 @@ def action(user,id,submit,quantity):
     return 'False'
 
 def logout(request):
+    request.session['user'] = None
+    user = request.session.get('user')
+    if(user == None):
+        return redirect('login')
     return request

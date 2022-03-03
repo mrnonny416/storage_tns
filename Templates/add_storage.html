@@ -21,7 +21,7 @@
           </ul>
         </div>
             <div class="p2">{{ user }}
-            <a href="{% url 'login' %}"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+            <a href="{% url 'logout' %}" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
           </div>
         </nav>
           <br>
@@ -105,8 +105,8 @@
 
     <div class="row d-flex justify-content-center pt-3">
       <div class="form-inline">
-          <button type="submit" class="btn btn-success mr-2">OK</button>
-          <button type="Cancel" class="btn btn-danger">Cancel</button>
+          <button type="submit" class="btn btn-success mr-2" id="submit" name="submit" value="OK">OK</button>
+          <button type="submit" class="btn btn-danger" id="submit" name="submit" value="Cancel">Cancel</button>
       </div>
   </div>
         <br><br><br><br> 

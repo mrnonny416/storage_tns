@@ -13,13 +13,13 @@
           </a>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="{% url 'add_storage'%}">เพิ่มวัสดุ/อุปกรณ์</a>
-            <a class="dropdown-item" href="{% url 'admin:index'%}">Admin</a>
+            <a class="dropdown-item" href="{% url 'admin:index'%}" target="_blank">Admin</a>
           </div>
         </li>
       </ul>
     </div>
         <div class="p2">{{ user }}
-        <a href="{% url 'login' %}"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+        <a href="{% url 'logout' %}" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
       </div>
     </nav>
     <br>
