@@ -59,7 +59,7 @@
           <div class="p-3 text-center">
             <a href="product?id={{ item.order }}" target="_blank">
             <img src="static/media/{{ item.Picture }}" class="mx-auto d-block shadow-lg p-2 mb-3 bg-white rounded" width="200" height="200" alt="{{ item.Picture }}"></a>
-            <div>{{ item.Name }}</div>
+            <div>{{ item.Masterkey }}{{ item.Name }}</div>
             จำนวน : <mark><code>{{ item.Amount }}</code></mark>
           </div>
           {% empty %}

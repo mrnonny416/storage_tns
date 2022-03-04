@@ -1,6 +1,6 @@
 
 from django.shortcuts import redirect, render
-from .models import user, history, storage, brand as brandDB
+from .models import user, history, storage, brand as brandDB,equipment,material
 
 def login(request):
     isLogin = ''
@@ -25,16 +25,16 @@ def main(request):
     user = request.session.get('user')
     if(user == None):
         return redirect('login')
-    searchBox = storage.objects.all()
+    searchBox = material.objects.all()
+    searchBox.append(equipment.objects.all())
     if request.method == 'POST':
         keyword = request.POST.get('keyword')
         type = request.POST.get('type')
         category = request.POST.get('category')
         items = storage.objects.filter(Name__contains = keyword , Type__contains = type , Category__contains = category)
-        print(request.POST.get('reset'))
         return render(request, 'main.html',{'user':user,'storage':items,'keyword':keyword,'searchBox':searchBox ,'type':type,'category':category})
     else:
-        items = storage.objects.all()
+        items = reversed(storage.objects.all())
     return render(request, 'main.html',{'user':user,'storage':items,'searchBox':searchBox})
 
 def add_storage(request):
@@ -52,13 +52,29 @@ def add_storage(request):
         category = request.POST.get('category')
         amount = request.POST.get('amount')
         picture = request.FILES['customFile']
+        masterkey = None
         # บันทึกเข้าที่ DB.
-        storage(Name=name, Brand=brand, Type=type, Category=category, Amount=amount, Picture=picture).save()
         storage_add = reversed(storage.objects.all())
         for item in storage_add:
             Name_order = item.order
             break
-        history(Name_order=Name_order,Name=name, Brand=brand, Type=type,Action='ADD', Category=category, Amount=amount,Username=user).save()
+        if type == 'equipment':
+            lastest_order = reversed(equipment.objects.all())
+            for item in lastest_order:
+                masterkey = int((item.Masterkey)[3:])
+                break
+            if masterkey == None:masterkey = 0
+            equipment(Name=name,Masterkey=('TNS'+str(masterkey+1)), Brand=brand, Type=type, Category=category, Amount=amount, Picture=picture).save()
+            history(Name_order=Name_order,Masterkey=('TNS'+str(masterkey+1)),Name=name, Brand=brand, Type=type,Action='ADD', Category=category, Amount=amount,Username=user).save()
+        elif type == 'material':
+            lastest_order = reversed(material.objects.all())
+            for item in lastest_order:
+                masterkey = int((item.Masterkey)[3:])
+                break
+            if masterkey == None:masterkey = 0
+            material(Name=name,Masterkey=('MAT'+str(masterkey+1)), Brand=brand, Type=type, Category=category, Amount=amount, Picture=picture).save()
+            history(Name_order=Name_order,Masterkey=('TNS'+str(masterkey+1)),Name=name, Brand=brand, Type=type,Action='ADD', Category=category, Amount=amount,Username=user).save()
+        redirect('main')
     return render(request, 'add_storage.html', {'user': user,'Brand':Brand})
 
 def test(request):

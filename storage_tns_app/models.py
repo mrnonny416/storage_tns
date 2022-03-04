@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from django.db.models.fields import AutoField
+
 class user(models.Model):
     Username = models.CharField(primary_key=True,max_length=20)
     Password = models.CharField(max_length=20)
@@ -9,13 +10,15 @@ class user(models.Model):
     
         
 class storage(models.Model):
-    order = models.AutoField(auto_created=True, primary_key=True)
+    order = models.AutoField(auto_created=True, primary_key=True) #mat001 #tns001
+    Masterkey = models.CharField(max_length=50,blank=True)
     Name = models.CharField(max_length=50,blank=True)
     Brand = models.CharField(max_length=50, blank=True)
     Type = models.CharField(max_length=50, blank=True)
     Category = models.CharField(max_length=50, blank=True)
     Amount = models.IntegerField()
     Picture = models.ImageField(upload_to='storage', blank=True)
+
     def __str__(self):
         return self.Name
     def delete(self):
@@ -25,6 +28,7 @@ class storage(models.Model):
 class history(models.Model):
     order = models.AutoField(auto_created=True, primary_key=True)
     Name_order =models.IntegerField(blank=True)
+    Masterkey = models.CharField(max_length=50,blank=True)
     Name = models.CharField(max_length=50)
     Brand = models.CharField(max_length=50, blank=True)
     Type = models.CharField(max_length=50)
@@ -45,4 +49,36 @@ class brand(models.Model):
     def __str__(self):
         return self.Brand
     
+    
+class material(models.Model):
+    order = models.AutoField(auto_created=True, primary_key=True) #mat001 #tns001
+    Masterkey = models.CharField(max_length=50,blank=True)
+    Name = models.CharField(max_length=50,blank=True)
+    Brand = models.CharField(max_length=50, blank=True)
+    Type = models.CharField(max_length=50, blank=True)
+    Category = models.CharField(max_length=50, blank=True)
+    Amount = models.IntegerField()
+    Picture = models.ImageField(upload_to='storage', blank=True)
+
+    def __str__(self):
+        return self.Name
+    def delete(self):
+        self.Picture.delete()
+        super(material, self).delete()
+        
+class equipment(models.Model):
+    order = models.AutoField(auto_created=True, primary_key=True) #mat001 #tns001
+    Masterkey = models.CharField(max_length=50,blank=True)
+    Name = models.CharField(max_length=50,blank=True)
+    Brand = models.CharField(max_length=50, blank=True)
+    Type = models.CharField(max_length=50, blank=True)
+    Category = models.CharField(max_length=50, blank=True)
+    Amount = models.IntegerField()
+    Picture = models.ImageField(upload_to='storage', blank=True)
+
+    def __str__(self):
+        return self.Name
+    def delete(self):
+        self.Picture.delete()
+        super(material, self).delete()
     
