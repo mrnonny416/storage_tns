@@ -9,7 +9,7 @@ admin.site.register(models.user)
 admin.site.register(models.storage)
 admin.site.register(models.history)
 admin.site.register(models.brand)
-admin.site.register(models.material)
-admin.site.register(models.equipment)
+admin.site.register(models.type)
+admin.site.register(models.category)
 
 # Register your models here.

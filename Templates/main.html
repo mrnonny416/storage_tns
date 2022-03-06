@@ -33,13 +33,15 @@
             {% csrf_token %}
             <select name="type" class="custom-select mr-3" onchange="this.form.submit()">
               <option value="" {% if type == '' %}selected{% endif %}>-ประเภท-</option>
-              <option value="material" {% if type == 'material' %}selected{% endif %}>วัสดุ</option>
-              <option value="equipment" {% if type == 'equipment' %}selected{% endif %}>อุปกรณ์</option>
+              {% for typeDB in typeSearch %}
+              <option value="{{ typeDB.Type }}" {% if type == typeDB.Type %}selected{% endif %}>{{ typeDB.Thai_Name }}</option>
+              {% endfor %}
             </select>
             <select name="category" class="custom-select mr-3" onchange="this.form.submit()">
               <option value="" {% if category == '' %}selected{% endif %}>-ลักษณะงาน-</option>
-              <option value="Network" {% if category == 'Network' %}selected{% endif %}>Network</option>
-              <option value="Interior"{% if category == 'Interior' %}selected{% endif %}>Interior</option>
+              {% for categoryDB in categorySearch %}
+              <option value="{{ categoryDB.Category }}" {% if category == categoryDB.Category %}selected{% endif %}>{{ categoryDB.Category }}</option>
+              {% endfor %}
             </select>
               <i class="fas fa-search ml-2" aria-hidden="true"></i>
               <input class="form-control form-control-sm ml-1 w-70" type="text" list="items" placeholder="Search" aria-label="Search" id="keyword" name="keyword" value ="{{ keyword }}">

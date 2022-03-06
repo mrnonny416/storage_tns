@@ -1,6 +1,6 @@
 
 from django.shortcuts import redirect, render
-from .models import user, history, storage, brand as brandDB,equipment,material
+from .models import user, history, storage, brand as brandDB,type as typeDB,category as categoryDB
 
 def login(request):
     isLogin = ''
@@ -25,24 +25,27 @@ def main(request):
     user = request.session.get('user')
     if(user == None):
         return redirect('login')
-    searchBox = material.objects.all()
-    searchBox.append(equipment.objects.all())
+    searchBox = storage.objects.all()
+    categorySearch = categoryDB.objects.all()
+    typeSearch = typeDB.objects.all()
     if request.method == 'POST':
         keyword = request.POST.get('keyword')
         type = request.POST.get('type')
         category = request.POST.get('category')
         items = storage.objects.filter(Name__contains = keyword , Type__contains = type , Category__contains = category)
-        return render(request, 'main.html',{'user':user,'storage':items,'keyword':keyword,'searchBox':searchBox ,'type':type,'category':category})
+        return render(request, 'main.html',{'user':user,'storage':items,'keyword':keyword,'searchBox':searchBox ,'type':type,'category':category,'categorySearch':categorySearch,'typeSearch':typeSearch})
     else:
         items = reversed(storage.objects.all())
-    return render(request, 'main.html',{'user':user,'storage':items,'searchBox':searchBox})
+    return render(request, 'main.html',{'user':user,'storage':items,'searchBox':searchBox,'categorySearch':categorySearch,'typeSearch':typeSearch})
 
 def add_storage(request):
     user = request.session.get('user')
     if(user == None):
         return redirect('login')
     Brand = brandDB.objects.all()
-    if request.method == 'POST':
+    Category = categoryDB.objects.all()
+    Type = typeDB.objects.all()
+    if request.method == 'POST' and request.FILES:
         if request.POST.get('submit') != 'OK':
             return redirect('main')
         # ตัวแปร สำหรับบันทึกค่า
@@ -57,25 +60,22 @@ def add_storage(request):
         storage_add = reversed(storage.objects.all())
         for item in storage_add:
             Name_order = item.order
+            Name_order += 1
             break
-        if type == 'equipment':
-            lastest_order = reversed(equipment.objects.all())
-            for item in lastest_order:
+        lastest_order = reversed(storage.objects.all())
+        for item in lastest_order:
+            if item.Type == type:
                 masterkey = int((item.Masterkey)[3:])
+                masterkey += 1
                 break
-            if masterkey == None:masterkey = 0
-            equipment(Name=name,Masterkey=('TNS'+str(masterkey+1)), Brand=brand, Type=type, Category=category, Amount=amount, Picture=picture).save()
-            history(Name_order=Name_order,Masterkey=('TNS'+str(masterkey+1)),Name=name, Brand=brand, Type=type,Action='ADD', Category=category, Amount=amount,Username=user).save()
-        elif type == 'material':
-            lastest_order = reversed(material.objects.all())
-            for item in lastest_order:
-                masterkey = int((item.Masterkey)[3:])
-                break
-            if masterkey == None:masterkey = 0
-            material(Name=name,Masterkey=('MAT'+str(masterkey+1)), Brand=brand, Type=type, Category=category, Amount=amount, Picture=picture).save()
-            history(Name_order=Name_order,Masterkey=('TNS'+str(masterkey+1)),Name=name, Brand=brand, Type=type,Action='ADD', Category=category, Amount=amount,Username=user).save()
-        redirect('main')
-    return render(request, 'add_storage.html', {'user': user,'Brand':Brand})
+        if masterkey == None:masterkey = 1
+        for eachType in Type:
+            if type == eachType.Type:
+                masterkey = eachType.Prefix+str(masterkey)
+        history(Name_order=Name_order,Masterkey=masterkey,Name=name, Brand=brand, Type=type,Action='ADD', Category=category, Amount=amount,Username=user).save()
+        storage(Name=name,Masterkey=masterkey, Brand=brand, Type=type, Category=category, Amount=amount, Picture=picture).save()
+        return redirect('main')
+    return render(request, 'add_storage.html', {'user': user,'Brand':Brand,'Category':Category,'Type':Type})
 
 def test(request):
     items = storage.objects.all()

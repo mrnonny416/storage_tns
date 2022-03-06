@@ -1,3 +1,4 @@
+from typing import OrderedDict
 from django.db import models
 from datetime import datetime
 from django.db.models.fields import AutoField
@@ -20,7 +21,7 @@ class storage(models.Model):
     Picture = models.ImageField(upload_to='storage', blank=True)
 
     def __str__(self):
-        return self.Name
+        return (self.Name)
     def delete(self):
         self.Picture.delete()
         super(storage, self).delete()
@@ -49,36 +50,16 @@ class brand(models.Model):
     def __str__(self):
         return self.Brand
     
-    
-class material(models.Model):
-    order = models.AutoField(auto_created=True, primary_key=True) #mat001 #tns001
-    Masterkey = models.CharField(max_length=50,blank=True)
-    Name = models.CharField(max_length=50,blank=True)
-    Brand = models.CharField(max_length=50, blank=True)
+class type(models.Model):
+    order = models.AutoField(auto_created=True, primary_key=True)
+    Prefix = models.CharField(max_length=50, blank=True)
     Type = models.CharField(max_length=50, blank=True)
-    Category = models.CharField(max_length=50, blank=True)
-    Amount = models.IntegerField()
-    Picture = models.ImageField(upload_to='storage', blank=True)
-
+    Thai_Name = models.CharField(max_length=50, blank=True)
     def __str__(self):
-        return self.Name
-    def delete(self):
-        self.Picture.delete()
-        super(material, self).delete()
-        
-class equipment(models.Model):
-    order = models.AutoField(auto_created=True, primary_key=True) #mat001 #tns001
-    Masterkey = models.CharField(max_length=50,blank=True)
-    Name = models.CharField(max_length=50,blank=True)
-    Brand = models.CharField(max_length=50, blank=True)
-    Type = models.CharField(max_length=50, blank=True)
-    Category = models.CharField(max_length=50, blank=True)
-    Amount = models.IntegerField()
-    Picture = models.ImageField(upload_to='storage', blank=True)
-
-    def __str__(self):
-        return self.Name
-    def delete(self):
-        self.Picture.delete()
-        super(material, self).delete()
+        return self.Type
     
+class category(models.Model):
+    order = models.AutoField(auto_created=True, primary_key=True)
+    Category = models.CharField(max_length=50, blank=True)
+    def __str__(self):
+        return self.Category
