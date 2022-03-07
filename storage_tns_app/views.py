@@ -77,10 +77,6 @@ def add_storage(request):
         return redirect('main')
     return render(request, 'add_storage.html', {'user': user,'Brand':Brand,'Category':Category,'Type':Type})
 
-def test(request):
-    items = storage.objects.all()
-    return render(request, 'test.html',{'storage':items})
-
 def product(request):
     user = request.session.get('user')
     if(user == None):
