@@ -16,19 +16,19 @@ Including another URLconf
 
 from xml.dom.minidom import Document
 from django.conf import settings
-from django.conf.urls import url
+from django.urls import re_path
 from django.conf.urls.static import static
 from storage_tns_app.views import login,main,add_storage,product,logout 
 from django.contrib import admin
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$',login,name='login'),
-    url(r'^main$',main,name='main'),
-    url(r'^add_storage$',add_storage,name='add_storage'),
-    url(r'^product$',product,name='product'),
-    url(r'^logout$',logout,name='logout'),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^$',login,name='login'),
+    re_path(r'^main$',main,name='main'),
+    re_path(r'^add_storage$',add_storage,name='add_storage'),
+    re_path(r'^product$',product,name='product'),
+    re_path(r'^logout$',logout,name='logout'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL ,document_root=settings.MEDIA_ROOT)
