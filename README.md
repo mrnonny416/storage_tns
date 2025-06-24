@@ -43,7 +43,7 @@ storage_tns/
 ├── Templates/                # Project-level HTML templates
 ├── static/                   # Project-level static files (images, CSS, JS)
 └── db.sqlite3                # SQLite database (default)
-
+```
 ## Getting Started
 
 ### Prerequisites
