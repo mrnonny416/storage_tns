@@ -17,6 +17,33 @@ A web-based inventory management system for materials and equipment, built with 
 
 See the project on GitHub: [mrnonny416/storage_tns](https://github.com/mrnonny416/storage_tns)
 
+## Project Structure
+
+```
+storage_tns/
+├── manage.py
+├── requirements.txt
+├── README.md
+├── storage_tns/              # Django project settings
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── storage_tns_app/          # Main application (models, views, templates)
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations/
+│   ├── models.py
+│   ├── tests.py
+│   ├── views.py
+│   ├── templates/
+│   └── static/
+├── Templates/                # Project-level HTML templates
+├── static/                   # Project-level static files (images, CSS, JS)
+└── db.sqlite3                # SQLite database (default)
+
 ## Getting Started
 
 ### Prerequisites
